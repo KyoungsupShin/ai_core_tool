@@ -1,3 +1,11 @@
 node_modules/
 coverage/
 *.tgz
+.env
+.env.*
+!.env.example
+.venv*/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+notebooks/*-executed.ipynb

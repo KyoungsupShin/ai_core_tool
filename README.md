@@ -2,6 +2,33 @@
 
 SAP AI Core Calculator의 가격표와 계산식을 분리한 로컬 Tool입니다. Node.js 20 이상에서 CLI 또는 JavaScript 함수로 호출합니다. MCP 서버나 LLM API 연결은 필요하지 않습니다.
 
+## Jupyter 실습
+
+[실습 노트북](notebooks/01_ai_core_tool_lab.ipynb)은 Python에서 기존 Node Tool을 호출합니다. 모델·단가 조회, Standard/Batch 비교, 부가 서비스·Compute, 계약 환산율, 오류 처리, Tool Calling 루프를 순서대로 실습합니다.
+
+```bash
+npm ci
+python -m venv .venv
+.venv/bin/python -m pip install -r requirements-notebook.txt
+.venv/bin/python -m ipykernel install --user --name ai-core-tool --display-name "AI Core Tool Lab"
+.venv/bin/python -m jupyterlab
+```
+
+Windows PowerShell에서는 `.venv/bin/python` 대신 `.\.venv\Scripts\python.exe`를 사용합니다. Jupyter에서 **AI Core Tool Lab** 커널을 선택합니다.
+
+기본 Run All은 실제 LLM을 호출하지 않습니다. 스크립트 기반 모델 메시지와 실제 로컬 Tool로 전체 호출 흐름을 확인합니다. 실제 자연어 LLM 실습은 루트 `.env`를 직접 준비한 뒤 노트북의 `USE_LIVE_LLM=True`로 켭니다. `.env.example`에는 비어 있는 설정 항목만 있으며 `.env`는 Git에서 제외합니다.
+
+LLM 연결은 [devday2026의 native Tool Calling](https://github.com/KyoungsupShin/devday2026/blob/feature/ks_shin/4_agent_patterns/src/agent_to_agent_advanced/agent_client.py)을 참고했습니다. 같은 `AICORE_*`, `LLM_MODEL`, `LLM_SEED`, 선택적 `AICORE_LLM_DEPLOYMENT_ID`를 사용하며 `sap-ai-sdk-gen`으로 연결합니다. `LLM_MODEL`은 요청을 해석할 모델이며 견적 대상의 `modelId`와는 별개입니다.
+
+노트북·Python 연결 검증:
+
+```bash
+.venv/bin/python -m unittest discover -s notebooks -p 'test_*.py'
+.venv/bin/python scripts/check-notebook.py
+```
+
+노트북은 실행 출력 없이 커밋합니다. `scripts/build-notebook.py`로 셀을 재생성할 수 있습니다. 실제 Gen AI Hub 연결은 본인의 자격 증명과 function calling 지원 배포가 필요합니다.
+
 ## 실행
 
 ```bash
