@@ -1,6 +1,8 @@
 # Matches the SDK family used by KyoungsupShin/devday2026.
 sap-ai-sdk-gen>=7.4.1,<8
 sap-ai-sdk-core>=3.5,<4
+langgraph>=1,<2
+langchain-core>=1,<2
 python-dotenv>=1.0,<2
 jupyterlab>=4,<5
 ipykernel>=6,<7

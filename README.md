@@ -4,7 +4,7 @@ SAP AI Core Calculator의 가격표와 계산식을 분리한 로컬 Tool입니�
 
 ## Jupyter 실습
 
-[실습 노트북](notebooks/01_ai_core_tool_lab.ipynb)은 Python에서 기존 Node Tool을 호출합니다. 모델·단가 조회, Standard/Batch 비교, 부가 서비스·Compute, 계약 환산율, 오류 처리, Tool Calling 루프를 순서대로 실습합니다.
+[실습 노트북](notebooks/01_ai_core_tool_lab.ipynb)은 Python에서 기존 Node Tool을 호출합니다. 모델·단가 조회, Standard/Batch 비교, 부가 서비스·Compute, 계약 환산율, 오류 처리, ReAct Agent의 Tool Calling을 순서대로 실습합니다.
 
 GitHub 미리보기에서 `Unable to render code block`가 나오면 [일반 Markdown 미리보기](notebooks/01_ai_core_tool_lab.md)를 이용하세요. [원본 .ipynb 다운로드](https://github.com/KyoungsupShin/ai_core_tool/raw/refs/heads/main/notebooks/01_ai_core_tool_lab.ipynb)도 가능하며 실행은 로컬 Jupyter에서 진행합니다.
 
@@ -18,7 +18,9 @@ python -m venv .venv
 
 Windows PowerShell에서는 `.venv/bin/python` 대신 `.\.venv\Scripts\python.exe`를 사용합니다. Jupyter에서 **AI Core Tool Lab** 커널을 선택합니다.
 
-기본 Run All은 실제 LLM을 호출하지 않습니다. 스크립트 기반 모델 메시지와 실제 로컬 Tool로 전체 호출 흐름을 확인합니다. 실제 자연어 LLM 실습은 루트 `.env`를 직접 준비한 뒤 노트북의 `USE_LIVE_LLM=True`로 켭니다. `.env.example`에는 비어 있는 설정 항목만 있으며 `.env`는 Git에서 제외합니다.
+기본 Run All은 실제 LLM을 호출하지 않습니다. 스크립트 기반 모델 메시지를 실제 LangGraph ReAct 그래프와 로컬 Tool에 연결해 전체 흐름을 확인합니다. 실제 자연어 LLM 실습은 루트 `.env`를 직접 준비한 뒤 노트북의 `USE_LIVE_LLM=True`로 켭니다. `.env.example`에는 비어 있는 설정 항목만 있으며 `.env`는 Git에서 제외합니다.
+
+ReAct 구조는 `Reason (LLM) → Act (LangGraph ToolNode) → Observe (도구 결과) → Reason`입니다. 모델이 도구 종류와 순서를 선택하고, 관찰값이나 오류를 근거로 다음 행동을 다시 선택합니다. 최대 모델 턴·Tool 호출 수를 넘으면 그래프가 중단됩니다. Trace에는 공개된 행동과 관찰값을 기록하며 비공개 추론은 수집하지 않습니다. 구현은 `notebooks/lab_support.py`의 `build_react_agent`와 `run_react_agent`입니다. 기존 `run_agent` 이름은 호환 별칭으로 유지합니다.
 
 LLM 연결은 [devday2026의 native Tool Calling](https://github.com/KyoungsupShin/devday2026/blob/feature/ks_shin/4_agent_patterns/src/agent_to_agent_advanced/agent_client.py)을 참고했습니다. 같은 `AICORE_*`, `LLM_MODEL`, `LLM_SEED`, 선택적 `AICORE_LLM_DEPLOYMENT_ID`를 사용하며 `sap-ai-sdk-gen`으로 연결합니다. `LLM_MODEL`은 요청을 해석할 모델이며 견적 대상의 `modelId`와는 별개입니다.
 

@@ -3,17 +3,17 @@
 >
 > GitHub에서 `Unable to render code block`가 나오면 이 문서로 내용을 확인하고, 실행은 로컬 Jupyter에서 진행하세요.
 
-# SAP AI Core 견적 Tool 실습
+# SAP AI Core ReAct 견적 Agent 실습
 
-모델·단가 조회부터 견적 비교, SAP Gen AI Hub의 **실제 function calling**까지 순서대로 실습합니다.
+모델·단가 조회부터 견적 비교, SAP Gen AI Hub에 연결한 **ReAct Agent의 Tool Calling**까지 순서대로 실습합니다.
 Python 노트북은 기존 Node.js Tool을 호출하므로 계산식과 가격표를 복제하지 않습니다.
 
 | 단계 | 실습 | .env / 외부 LLM |
 | --- | --- | --- |
 | 1 | 모델·단가 확인, Standard/Batch 비교 | 불필요 |
 | 2 | 사용량, 부가 서비스, Compute, 통화 환산 | 불필요 |
-| 3 | 스크립트 기반 Tool Calling 흐름 관찰 | 불필요 |
-| 4 | 자연어 요청 → Gen AI Hub → Tool → 답변 | 필요 |
+| 3 | ReAct 그래프와 Reason/Act/Observe 추적 | 불필요 |
+| 4 | 자연어 요청 → ReAct Agent → Tool → 답변 | 필요 |
 
 처음에는 **Run All**로 로컬 실습을 완료하고, 마지막 단계의 `USE_LIVE_LLM`을 켜서 실제 모델을 연결합니다.
 
@@ -57,8 +57,8 @@ if support_path not in sys.path:
     sys.path.insert(0, support_path)
 
 from lab_support import (
-    DEMO_REQUEST, NodeTools, ToolCallError, chat_completion,
-    load_settings, make_demo_completion, run_agent,
+    DEMO_REQUEST, NodeTools, ToolCallError, build_react_agent, chat_completion,
+    load_settings, make_demo_completion, run_react_agent,
 )
 
 tools = NodeTools(ROOT)
@@ -201,17 +201,35 @@ except ToolCallError as error:
     display(JSON(error.error))
 ```
 
-## 3. Tool Calling 루프 관찰: 로컬 시뮬레이션
+## 3. ReAct Agent: Reason → Act → Observe
 
-**이 단계는 LLM 추론이 아닙니다.** 고정된 요청에 대한 모델 메시지를 스크립트로 제공하며, Tool 실행은 실제 Node 계산 엔진을 사용합니다.
-`list_models → get_model_pricing → Standard/Batch 견적 → 결과 응답`의 연결과 `tool_call_id`를 관찰합니다.
-실제 LLM 단계에서도 같은 `run_agent` 함수를 사용합니다.
+LangGraph의 `StateGraph`가 **Reason → Act → Observe → Reason** 순환을 제어하고,
+`ToolNode`가 실제 Tool을 실행합니다. 각 Reason 단계에서 모델은 이전 관찰을 보고 도구 호출, 최종 답변 또는 추가 질문을 선택합니다.
+조회·계산 도구의 실행 순서는 고정되어 있지 않습니다.
+
+```text
+사용자 요청 → Reason (LLM) → Act (ToolNode) → Observe (Tool 결과)
+                 ↑                                  |
+                 +----------------------------------+
+                 |
+                 +→ 최종 답변 / 추가 질문
+```
+
+**이 단계의 모델 응답은 스크립트 기반 시뮬레이션입니다.** 그래프와 Tool 실행은 실제이며, 마지막 단계에서 같은 그래프에 Gen AI Hub LLM을 연결합니다.
+Trace에는 선택한 행동과 관찰된 결과를 기록합니다. 모델의 비공개 추론 과정은 수집하거나 표시하지 않습니다.
+
+
+```python
+react_graph = build_react_agent(completion=make_demo_completion(), node_tools=tools)
+print(react_graph.get_graph().draw_mermaid())
+```
 
 
 ```python
 print(DEMO_REQUEST)
-demo = run_agent(DEMO_REQUEST, completion=make_demo_completion(), node_tools=tools)
+demo = run_react_agent(DEMO_REQUEST, completion=make_demo_completion(), node_tools=tools)
 assert demo["status"] == "completed"
+assert demo["architecture"] == "langgraph-react"
 display(demo["events"])
 print(demo["answer"])
 ```
@@ -225,7 +243,7 @@ display([
 ])
 ```
 
-## 4. 실제 SAP Gen AI Hub 연결
+## 4. ReAct Agent에 실제 SAP Gen AI Hub 연결
 
 [devday2026의 agent_client.py](https://github.com/KyoungsupShin/devday2026/blob/feature/ks_shin/4_agent_patterns/src/agent_to_agent_advanced/agent_client.py)와 동일하게
 `gen_ai_hub.proxy.native.openai.chat.completions.create(model_name=..., tools=...)`를 사용합니다.
@@ -268,7 +286,7 @@ live = None
 if USE_LIVE_LLM:
     settings = load_settings(ROOT / ".env")
     settings.require_ai_core()
-    live = run_agent(
+    live = run_react_agent(
         LIVE_REQUEST,
         completion=lambda **kwargs: chat_completion(settings, **kwargs),
         node_tools=tools,
@@ -310,5 +328,6 @@ display(JSON(verified_quotes))
 3. `get_model_pricing`으로 Cached 모드가 있는 모델을 찾아 비캐시 입력·캐시 읽기·캐시 쓰기를 따로 넣으세요.
 4. 실제 LLM에 필수 사용량이 빠진 요청을 보내고 어떤 추가 질문을 하는지 확인하세요.
 5. 결과의 `pricingVersion`, `catalogHash`, `policyVersion`, `policyHash`가 재현성에 어떤 역할을 하는지 확인하세요.
+6. ReAct Trace에서 Observe 다음에 어떤 Tool을 선택했는지 확인하고, 잘못된 입력을 고쳐 다시 호출하는 흐름을 관찰하세요.
 
 가격표 갱신과 계산 정책 관리는 루트 `README.md`를 참고하세요. `.env`와 실행한 노트북의 출력은 공개 Git에 올리지 마세요.

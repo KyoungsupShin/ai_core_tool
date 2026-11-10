@@ -129,6 +129,10 @@ def chat_completion(settings: Settings, *, messages: list[dict[str, Any]], tools
 
 
 SYSTEM_PROMPT = """You help estimate SAP AI Core costs. Answer in Korean.
+Follow ReAct: assess the request and prior observations, choose a tool action when evidence is needed,
+observe the tool result, and reassess until you can answer or ask for missing input.
+Tool order is your decision; no fixed lookup or estimation sequence is required.
+Before an action you may provide one short public decision summary, never private chain-of-thought.
 Use list_models and get_model_pricing to verify model IDs, original versions and supported pricing modes.
 Use estimate_ai_core_cost for every cost figure; never invent prices or calculate a quote yourself.
 Token quantities are per request; requests are monthly. Optional services stay disabled unless explicitly requested.
@@ -149,40 +153,78 @@ def _reject_nonfinite(value: str) -> None:
     raise ValueError(f"Non-finite JSON number: {value}")
 
 
-def run_agent(
-    request: str, *, completion: Callable[..., Any], node_tools: NodeTools | None = None,
+def build_react_agent(
+    *, completion: Callable[..., Any], node_tools: NodeTools | None = None,
     max_rounds: int = 8, max_tool_calls: int = 20,
-) -> dict[str, Any]:
-    """Bounded native function-calling loop; the same protocol serves demo and live mode."""
-    if not isinstance(request, str) or not request.strip():
-        raise ValueError("Enter a non-empty request.")
+) -> Any:
+    """Compile Reason -> ToolNode -> Observe -> Reason with LangGraph."""
+    from langchain_core.messages import AIMessage
+    from langchain_core.tools import StructuredTool
+    from langgraph.graph import END, START, MessagesState, StateGraph
+    from langgraph.prebuilt import ToolNode
+
     if not 1 <= max_rounds <= 20 or not 1 <= max_tool_calls <= 100:
         raise ValueError("Use 1..20 rounds and 1..100 tool calls.")
     node_tools = node_tools or NodeTools()
     definitions = node_tools.definitions
     names = {item["function"]["name"] for item in definitions}
-    messages: list[dict[str, Any]] = [{"role": "system", "content": SYSTEM_PROMPT}, {"role": "user", "content": request.strip()}]
-    events: list[dict[str, Any]] = []
-    observations: list[dict[str, Any]] = []
-    call_count = 0
-    for round_number in range(1, max_rounds + 1):
-        events.append({"event": "llm_request", "round": round_number})
-        response = completion(messages=deepcopy(messages), tools=deepcopy(definitions), tool_choice="auto")
+
+    class ReActState(MessagesState):
+        wire_messages: list[dict[str, Any]]
+        events: list[dict[str, Any]]
+        observations: list[dict[str, Any]]
+        pending: list[dict[str, Any]]
+        round_number: int
+        call_count: int
+        status: str
+        answer: str
+
+    def make_tool(definition):
+        function = definition["function"]
+        def dispatch(**arguments):
+            result = node_tools.call(function["name"], arguments)
+            return json.dumps(result, ensure_ascii=False), result
+        return StructuredTool.from_function(
+            func=dispatch, name=function["name"], description=function["description"],
+            args_schema=function["parameters"], response_format="content_and_artifact",
+        )
+
+    def rejected_arguments(error):
+        result = {"error": error}
+        return json.dumps(result), result
+
+    error_tool = StructuredTool.from_function(
+        func=rejected_arguments, name="_tool_error", description="Internal malformed-call observation.",
+        args_schema={"type": "object", "properties": {"error": {"type": "object"}}, "required": ["error"]},
+        response_format="content_and_artifact",
+    )
+
+    def tool_error(error: Exception) -> str:
+        detail = error.error if isinstance(error, ToolCallError) else {"code": "TOOL_EXECUTION_ERROR", "message": "Local tool execution failed."}
+        return json.dumps({"error": detail}, ensure_ascii=False)
+
+    def reason(state):
+        round_number = state["round_number"] + 1
+        response = completion(messages=deepcopy(state["wire_messages"]), tools=deepcopy(definitions), tool_choice="auto")
         choices = _field(response, "choices", [])
         if not choices:
             raise RuntimeError("LLM response has no choices.")
         message = _field(choices[0], "message")
         calls = _field(message, "tool_calls", []) or []
         content = _field(message, "content") or ""
+        event = {"event": "reason", "round": round_number, "selected_tools": [_field(_field(c, "function"), "name") for c in calls]}
+        if calls and content:
+            event["decision_summary"] = content
+        events = [*state["events"], event]
         if not calls:
             if not isinstance(content, str) or not content.strip():
                 raise RuntimeError("LLM response contains neither text nor tool calls.")
-            messages.append({"role": "assistant", "content": content})
             events.append({"event": "final_answer", "round": round_number})
-            return {"status": "completed", "answer": content, "events": events, "observations": observations, "messages": messages}
-        if call_count + len(calls) > max_tool_calls:
-            break
-        normalized = []
+            return {"messages": [AIMessage(content=content)], "wire_messages": [*state["wire_messages"], {"role": "assistant", "content": content}],
+                    "status": "completed", "answer": content, "round_number": round_number, "events": events}
+        if state["call_count"] + len(calls) > max_tool_calls:
+            return {"status": "limit_reached", "round_number": round_number, "events": events}
+        normalized, graph_calls, pending = [], [], []
         ids: set[str] = set()
         for call in calls:
             function = _field(call, "function")
@@ -193,27 +235,71 @@ def run_agent(
                 raise RuntimeError("LLM returned an invalid tool-call contract.")
             ids.add(call_id)
             normalized.append({"id": call_id, "type": "function", "function": {"name": name, "arguments": raw}})
-        messages.append({"role": "assistant", "content": content, "tool_calls": normalized})
-        for call in normalized:
-            call_count += 1
-            name = call["function"]["name"]
             arguments: Any = None
             try:
-                arguments = json.loads(call["function"]["arguments"], parse_constant=_reject_nonfinite)
+                arguments = json.loads(raw, parse_constant=_reject_nonfinite)
                 if not isinstance(arguments, dict):
                     raise ValueError("Tool arguments must be an object.")
                 if name not in names:
                     raise ToolCallError({"code": "UNKNOWN_TOOL", "message": "Select a tool from the supplied definitions."})
-                result = node_tools.call(name, arguments)
+                graph_calls.append({"name": name, "args": arguments, "id": call_id, "type": "tool_call"})
             except (ValueError, TypeError):
-                result = {"error": {"code": "INVALID_ARGUMENT", "message": "Tool arguments must be a valid JSON object."}}
+                graph_calls.append({"name": "_tool_error", "args": {"error": {"code": "INVALID_ARGUMENT", "message": "Tool arguments must be a valid JSON object."}}, "id": call_id, "type": "tool_call"})
             except ToolCallError as error:
-                result = {"error": error.error}
-            events.append({"event": "tool_result", "round": round_number, "name": name, "arguments": arguments, "ok": "error" not in result})
-            observations.append({"name": name, "arguments": arguments, "result": result})
-            messages.append({"role": "tool", "tool_call_id": call["id"], "content": json.dumps(result, ensure_ascii=False)})
-    events.append({"event": "limit_reached", "toolCalls": call_count})
-    return {"status": "limit_reached", "answer": "호출 횟수 제한에 도달했습니다. 관찰된 Tool 결과를 확인하고 요청을 좁혀 다시 실행하세요.", "events": events, "observations": observations, "messages": messages}
+                graph_calls.append({"name": "_tool_error", "args": {"error": error.error}, "id": call_id, "type": "tool_call"})
+            pending.append({"id": call_id, "name": name, "arguments": arguments})
+        return {"messages": [AIMessage(content=content, tool_calls=graph_calls)], "pending": pending,
+                "wire_messages": [*state["wire_messages"], {"role": "assistant", "content": content, "tool_calls": normalized}],
+                "round_number": round_number, "events": events}
+
+    def observe(state):
+        results = {message.tool_call_id: message for message in state["messages"][-len(state["pending"]):]}
+        events, observations, wire = list(state["events"]), list(state["observations"]), list(state["wire_messages"])
+        for call in state["pending"]:
+            message = results[call["id"]]
+            result = message.artifact if message.artifact is not None else json.loads(message.content)
+            events.append({"event": "act", "round": state["round_number"], "name": call["name"], "arguments": call["arguments"]})
+            summary = {"error": result["error"]["code"]} if "error" in result else {key: result[key] for key in ("monthlyCUExact", "pricingModes") if key in result}
+            if "models" in result:
+                summary["modelsFound"] = len(result["models"])
+            events.append({"event": "observe", "round": state["round_number"], "name": call["name"], "ok": "error" not in result, "summary": summary})
+            observations.append({"name": call["name"], "arguments": call["arguments"], "result": result})
+            wire.append({"role": "tool", "tool_call_id": call["id"], "content": json.dumps(result, ensure_ascii=False)})
+        return {"events": events, "observations": observations, "wire_messages": wire, "call_count": state["call_count"] + len(state["pending"]), "pending": []}
+
+    def limit(state):
+        return {"status": "limit_reached", "answer": "호출 횟수 제한에 도달했습니다. 관찰된 Tool 결과를 확인하고 요청을 좁혀 다시 실행하세요.",
+                "events": [*state["events"], {"event": "limit_reached", "toolCalls": state["call_count"]}]}
+
+    graph = StateGraph(ReActState)
+    graph.add_node("reason", reason)
+    graph.add_node("act", ToolNode([*(make_tool(d) for d in definitions), error_tool], name="act", handle_tool_errors=tool_error))
+    graph.add_node("observe", observe)
+    graph.add_node("limit", limit)
+    graph.add_edge(START, "reason")
+    graph.add_conditional_edges("reason", lambda s: "done" if s["status"] == "completed" else "limit" if s["status"] == "limit_reached" else "act", {"done": END, "limit": "limit", "act": "act"})
+    graph.add_edge("act", "observe")
+    graph.add_conditional_edges("observe", lambda s: "limit" if s["round_number"] >= max_rounds else "reason", {"limit": "limit", "reason": "reason"})
+    graph.add_edge("limit", END)
+    return graph.compile(name="ai_core_react_agent")
+
+
+def run_react_agent(
+    request: str, *, completion: Callable[..., Any], node_tools: NodeTools | None = None,
+    max_rounds: int = 8, max_tool_calls: int = 20,
+) -> dict[str, Any]:
+    if not isinstance(request, str) or not request.strip():
+        raise ValueError("Enter a non-empty request.")
+    graph = build_react_agent(completion=completion, node_tools=node_tools, max_rounds=max_rounds, max_tool_calls=max_tool_calls)
+    wire = [{"role": "system", "content": SYSTEM_PROMPT}, {"role": "user", "content": request.strip()}]
+    state = graph.invoke({"messages": wire, "wire_messages": wire, "events": [], "observations": [], "pending": [],
+                          "round_number": 0, "call_count": 0, "status": "running", "answer": ""},
+                         config={"recursion_limit": max_rounds * 3 + 3, "max_concurrency": 1})
+    return {"architecture": "langgraph-react", "status": state["status"], "answer": state["answer"],
+            "events": state["events"], "observations": state["observations"], "messages": state["wire_messages"]}
+
+
+run_agent = run_react_agent
 
 
 DEMO_REQUEST = "GPT-4.1 mini의 2025-04-14 버전으로 요청당 입력 2,000토큰, 출력 500토큰, 월 10,000회를 사용합니다. Standard와 Batch의 월 CU를 비교하세요. 추가 서비스는 사용하지 않으며 과거 카탈로그의 계산 재현이 목적입니다."

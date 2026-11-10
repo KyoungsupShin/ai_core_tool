@@ -12,7 +12,7 @@ from unittest.mock import Mock, patch
 
 from lab_support import (
     DEMO_REQUEST, PROJECT_ROOT, NodeTools, Settings, ToolCallError,
-    chat_completion, load_settings, make_demo_completion, run_agent,
+    build_react_agent, chat_completion, load_settings, make_demo_completion, run_agent, run_react_agent,
 )
 
 
@@ -46,6 +46,10 @@ class NotebookToolTests(unittest.TestCase):
     def test_demo_executes_real_tools_and_preserves_protocol(self):
         outcome = run_agent(DEMO_REQUEST, completion=make_demo_completion(), node_tools=self.tools)
         self.assertEqual(outcome["status"], "completed")
+        self.assertEqual(outcome["architecture"], "langgraph-react")
+        self.assertEqual([e["event"] for e in outcome["events"]].count("reason"), 4)
+        self.assertEqual([e["event"] for e in outcome["events"]].count("act"), 4)
+        self.assertEqual([e["event"] for e in outcome["events"]].count("observe"), 4)
         estimates = [o["result"]["monthlyCUExact"] for o in outcome["observations"] if o["name"] == "estimate_ai_core_cost"]
         self.assertEqual(estimates, ["19.3240775", "9.66203875"])
         self.assertIn(estimates[0], outcome["answer"])
@@ -59,6 +63,27 @@ class NotebookToolTests(unittest.TestCase):
             else:
                 self.assertEqual(pending, [])
         self.assertEqual(pending, [])
+
+    def test_react_graph_has_a_real_observation_loop(self):
+        graph = build_react_agent(completion=make_demo_completion(), node_tools=self.tools).get_graph()
+        edges = {(edge.source, edge.target) for edge in graph.edges}
+        self.assertTrue({("reason", "act"), ("act", "observe"), ("observe", "reason")} <= edges)
+        self.assertIn(("reason", "__end__"), edges)
+
+    def test_react_can_choose_estimation_first_and_react_to_observation(self):
+        seen = []
+        def completion(**kwargs):
+            messages = kwargs["messages"]
+            if not seen:
+                seen.append("first-estimate")
+                return response(tool_call("direct", "estimate_ai_core_cost", json.dumps(self.example)))
+            observation = json.loads(messages[-1]["content"])
+            self.assertEqual(observation["monthlyCUExact"], "19.3240775")
+            seen.append("observed")
+            return response(content="관찰된 견적은 19.3240775 CU/월입니다.")
+        result = run_react_agent("견적을 계산하세요", completion=completion, node_tools=self.tools)
+        self.assertEqual(seen, ["first-estimate", "observed"])
+        self.assertEqual([o["name"] for o in result["observations"]], ["estimate_ai_core_cost"])
 
     def test_bad_json_and_unknown_tools_are_returned_for_repair(self):
         replies = iter([
