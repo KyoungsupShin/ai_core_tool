@@ -6,6 +6,8 @@ SAP AI Core Calculator의 가격표와 계산식을 분리한 로컬 Tool입니�
 
 [실습 노트북](notebooks/01_ai_core_tool_lab.ipynb)은 Python에서 기존 Node Tool을 호출합니다. 모델·단가 조회, Standard/Batch 비교, 부가 서비스·Compute, 계약 환산율, 오류 처리, Tool Calling 루프를 순서대로 실습합니다.
 
+GitHub 미리보기에서 `Unable to render code block`가 나오면 [일반 Markdown 미리보기](notebooks/01_ai_core_tool_lab.md)를 이용하세요. [원본 .ipynb 다운로드](https://github.com/KyoungsupShin/ai_core_tool/raw/refs/heads/main/notebooks/01_ai_core_tool_lab.ipynb)도 가능하며 실행은 로컬 Jupyter에서 진행합니다.
+
 ```bash
 npm ci
 python -m venv .venv
@@ -27,7 +29,7 @@ LLM 연결은 [devday2026의 native Tool Calling](https://github.com/KyoungsupSh
 .venv/bin/python scripts/check-notebook.py
 ```
 
-노트북은 실행 출력 없이 커밋합니다. `scripts/build-notebook.py`로 셀을 재생성할 수 있습니다. 실제 Gen AI Hub 연결은 본인의 자격 증명과 function calling 지원 배포가 필요합니다.
+노트북은 실행 출력 없이 커밋합니다. `scripts/build-notebook.py`로 노트북과 Markdown 미리보기를 함께 재생성할 수 있습니다. 실제 Gen AI Hub 연결은 본인의 자격 증명과 function calling 지원 배포가 필요합니다.
 
 ## 실행
 

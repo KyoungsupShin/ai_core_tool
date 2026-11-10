@@ -3,6 +3,7 @@ from pathlib import Path
 from textwrap import dedent
 
 import nbformat as nbf
+from nbconvert import MarkdownExporter
 
 root = Path(__file__).resolve().parents[1]
 cells = []
@@ -30,6 +31,8 @@ Python 노트북은 기존 Node.js Tool을 호출하므로 계산식과 가격�
 | 4 | 자연어 요청 → Gen AI Hub → Tool → 답변 | 필요 |
 
 처음에는 **Run All**로 로컬 실습을 완료하고, 마지막 단계의 `USE_LIVE_LLM`을 켜서 실제 모델을 연결합니다.
+
+GitHub 미리보기에 오류가 나면 [일반 Markdown 버전](https://github.com/KyoungsupShin/ai_core_tool/blob/main/notebooks/01_ai_core_tool_lab.md)에서 내용을 확인할 수 있습니다.
 """)
 markdown("""
 ## 준비
@@ -318,4 +321,12 @@ notebook = nbf.v4.new_notebook(cells=cells, metadata={
 })
 nbf.validate(notebook)
 nbf.write(notebook, root / "notebooks" / "01_ai_core_tool_lab.ipynb")
-print(f"Generated {len(cells)} cells with no execution outputs.")
+body, _ = MarkdownExporter().from_notebook_node(notebook)
+banner = """> 이 문서는 실습 노트북에서 자동 생성한 정적 미리보기입니다.
+> [Jupyter Notebook 열기](https://github.com/KyoungsupShin/ai_core_tool/blob/main/notebooks/01_ai_core_tool_lab.ipynb) · [원본 .ipynb 다운로드](https://github.com/KyoungsupShin/ai_core_tool/raw/refs/heads/main/notebooks/01_ai_core_tool_lab.ipynb)
+>
+> GitHub에서 `Unable to render code block`가 나오면 이 문서로 내용을 확인하고, 실행은 로컬 Jupyter에서 진행하세요.
+
+"""
+(root / "notebooks" / "01_ai_core_tool_lab.md").write_text(banner + body, encoding="utf-8")
+print(f"Generated {len(cells)} cells with no execution outputs, plus a Markdown preview.")
