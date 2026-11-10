@@ -1,0 +1,2597 @@
+{
+  "sourceBundleSHA256": "b6177ef643f4c43b4e76eda5da01ceaa9f8a6999f619c00c114125f663357a94",
+  "fixtures": [
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "text-embedding-v4",
+            "version": "latest",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 1.90385
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "qwen3.8-max",
+            "version": "latest",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 74.7261125
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "qwen3.8-max",
+            "version": "latest",
+            "pricingMode": "Cached",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000,
+              "readCachedInputTokensPerRequest": 300,
+              "writeCachedInputTokensPerRequest": 200
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 80.9707405
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "qwen3.7-max",
+            "version": "latest",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 74.7261125
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "qwen3.7-max",
+            "version": "latest",
+            "pricingMode": "Cached",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000,
+              "readCachedInputTokensPerRequest": 300,
+              "writeCachedInputTokensPerRequest": 200
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 81.48478
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "qwen3.7-plus-tier-1",
+            "version": "latest",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 17.8009975
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "qwen3.7-plus-tier-1",
+            "version": "latest",
+            "pricingMode": "Cached",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000,
+              "readCachedInputTokensPerRequest": 300,
+              "writeCachedInputTokensPerRequest": 200
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 19.305039
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "qwen3.7-plus-tier-2",
+            "version": "latest",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 44.16932
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "qwen3.7-plus-tier-2",
+            "version": "latest",
+            "pricingMode": "Cached",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000,
+              "readCachedInputTokensPerRequest": 300,
+              "writeCachedInputTokensPerRequest": 200
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 47.748557999999996
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "qwen3.6-plus-tier-1",
+            "version": "latest",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 21.0375425
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "qwen3.6-plus-tier-1",
+            "version": "latest",
+            "pricingMode": "Cached",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000,
+              "readCachedInputTokensPerRequest": 300,
+              "writeCachedInputTokensPerRequest": 200
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 22.541584000000004
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "qwen3.6-plus-tier-2",
+            "version": "latest",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 69.68091
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "qwen3.6-plus-tier-2",
+            "version": "latest",
+            "pricingMode": "Cached",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000,
+              "readCachedInputTokensPerRequest": 300,
+              "writeCachedInputTokensPerRequest": 200
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 74.2311115
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "qwen3.6-flash-tier-1",
+            "version": "latest",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 14.564452500000002
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "qwen3.6-flash-tier-1",
+            "version": "latest",
+            "pricingMode": "Cached",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000,
+              "readCachedInputTokensPerRequest": 300,
+              "writeCachedInputTokensPerRequest": 200
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 15.668685499999997
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "qwen3.6-flash-tier-2",
+            "version": "latest",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 43.8837425
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "qwen3.6-flash-tier-2",
+            "version": "latest",
+            "pricingMode": "Cached",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000,
+              "readCachedInputTokensPerRequest": 300,
+              "writeCachedInputTokensPerRequest": 200
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 46.8537485
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "sap-abap-2",
+            "version": "1",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 29.128905000000003
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "sap-abap-2",
+            "version": "1",
+            "pricingMode": "Cached",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000,
+              "readCachedInputTokensPerRequest": 300,
+              "writeCachedInputTokensPerRequest": 200
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 31.204101499999997
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "nova-core",
+            "version": "2608",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 10.3759825
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "nova-core",
+            "version": "2608",
+            "pricingMode": "Cached",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000,
+              "readCachedInputTokensPerRequest": 300,
+              "writeCachedInputTokensPerRequest": 200
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 11.156561
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "sap-rpt-ts",
+            "version": "1",
+            "pricingMode": "Standard",
+            "usage": {
+              "contextCellsPerPrediction": 200,
+              "predictedCellsPerPrediction": 100,
+              "predictionsPerMonth": 1000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 0.038267385
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt6astra272k",
+            "version": "2026-09-03",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 385.910395
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt6astra272k",
+            "version": "2026-09-03",
+            "pricingMode": "Cached",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000,
+              "readCachedInputTokensPerRequest": 300,
+              "writeCachedInputTokensPerRequest": 200
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 422.0073909999999
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt6astra1M50K",
+            "version": "2026-09-03",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 1755.6352775000003
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt6astra1M50K",
+            "version": "2026-09-03",
+            "pricingMode": "Cached",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000,
+              "readCachedInputTokensPerRequest": 300,
+              "writeCachedInputTokensPerRequest": 200
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 1934.3877540000003
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt6luna272k",
+            "version": "2026-09-22",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 9.233672499999999
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt6luna272k",
+            "version": "2026-09-22",
+            "pricingMode": "Cached",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000,
+              "readCachedInputTokensPerRequest": 300,
+              "writeCachedInputTokensPerRequest": 200
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 9.976173999999999
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt6luna1M50K",
+            "version": "2026-09-22",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 13.517335000000001
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt6luna1M50K",
+            "version": "2026-09-22",
+            "pricingMode": "Cached",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000,
+              "readCachedInputTokensPerRequest": 300,
+              "writeCachedInputTokensPerRequest": 200
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 14.621568000000002
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt6.1sol272k",
+            "version": "2026-09-29",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 118.13389250000002
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt6.1sol272k",
+            "version": "2026-09-29",
+            "pricingMode": "Cached",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000,
+              "readCachedInputTokensPerRequest": 300,
+              "writeCachedInputTokensPerRequest": 200
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 125.63506149999999
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt6.1sol1M50K",
+            "version": "2026-09-29",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 200.95136749999998
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt6.1sol1M50K",
+            "version": "2026-09-29",
+            "pricingMode": "Cached",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000,
+              "readCachedInputTokensPerRequest": 300,
+              "writeCachedInputTokensPerRequest": 200
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 215.6490895
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "tabpfn-3.5-plus100k",
+            "version": "2609",
+            "pricingMode": "Standard",
+            "usage": {
+              "contextCellsPerPrediction": 200,
+              "predictedCellsPerPrediction": 100,
+              "predictionsPerMonth": 1000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 14.735798999999998
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "tabpfn-3.5-plus1M50K",
+            "version": "2609",
+            "pricingMode": "Standard",
+            "usage": {
+              "contextCellsPerPrediction": 200,
+              "predictedCellsPerPrediction": 100,
+              "predictionsPerMonth": 1000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 24.597742000000004
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gemini3.5flashlite",
+            "version": "001",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 41.313545
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gemini3.5flashlite",
+            "version": "001",
+            "pricingMode": "Cached",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000,
+              "readCachedInputTokensPerRequest": 300
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 41.542007
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "sap-rpt-1.6",
+            "version": "1",
+            "pricingMode": "Standard",
+            "usage": {
+              "contextCellsPerPrediction": 200,
+              "predictedCellsPerPrediction": 100,
+              "predictionsPerMonth": 1000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 3.9866618999999996
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "sap-rpt-1.6-large-tier-1",
+            "version": "1",
+            "pricingMode": "Standard",
+            "usage": {
+              "contextCellsPerPrediction": 200,
+              "predictedCellsPerPrediction": 100,
+              "predictionsPerMonth": 1000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 14.735798999999998
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "sap-rpt-1.6-large-tier-2",
+            "version": "1",
+            "pricingMode": "Standard",
+            "usage": {
+              "contextCellsPerPrediction": 200,
+              "predictedCellsPerPrediction": 100,
+              "predictionsPerMonth": 1000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 73.678995
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "nvidiallamanemotronembed1b",
+            "version": "2",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 2.66539
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt5.6sol272k",
+            "version": "2026-07-09",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 322.0362275
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt5.6sol272k",
+            "version": "2026-07-09",
+            "pricingMode": "Cached",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000,
+              "readCachedInputTokensPerRequest": 300,
+              "writeCachedInputTokensPerRequest": 200
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 340.2370335
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt5.6sol1M50K",
+            "version": "2026-07-09",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 545.1674475000001
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt5.6sol1M50K",
+            "version": "2026-07-09",
+            "pricingMode": "Cached",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000,
+              "readCachedInputTokensPerRequest": 300,
+              "writeCachedInputTokensPerRequest": 200
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 581.2644435
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt5.6Terra272k",
+            "version": "2026-07-09",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 130.79449499999998
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt5.6Terra272k",
+            "version": "2026-07-09",
+            "pricingMode": "Cached",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000,
+              "readCachedInputTokensPerRequest": 300,
+              "writeCachedInputTokensPerRequest": 200
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 138.29566400000002
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt5.6terra1M50K",
+            "version": "2026-07-09",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 220.08506000000003
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt5.6terra1M50K",
+            "version": "2026-07-09",
+            "pricingMode": "Cached",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000,
+              "readCachedInputTokensPerRequest": 300,
+              "writeCachedInputTokensPerRequest": 200
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 234.782782
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt5.6Luna272k",
+            "version": "2026-07-09",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 13.517334999999997
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt5.6Luna272k",
+            "version": "2026-07-09",
+            "pricingMode": "Cached",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000,
+              "readCachedInputTokensPerRequest": 300,
+              "writeCachedInputTokensPerRequest": 200
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 14.621568000000002
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt5.6luna1M50K",
+            "version": "2026-07-09",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 22.655815
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt5.6luna1M50K",
+            "version": "2026-07-09",
+            "pricingMode": "Cached",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000,
+              "readCachedInputTokensPerRequest": 300,
+              "writeCachedInputTokensPerRequest": 200
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 24.464472500000003
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt5.5",
+            "version": "2026-04-24",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 322.0362275
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt5.5",
+            "version": "2026-04-24",
+            "pricingMode": "Cached",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000,
+              "readCachedInputTokensPerRequest": 300
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 323.9781545
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt5",
+            "version": "2025-08-07",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 99.0953925
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt5",
+            "version": "2025-08-07",
+            "pricingMode": "Cached",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000,
+              "readCachedInputTokensPerRequest": 300
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 99.60943199999998
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "anthropicclaude4.8opus",
+            "version": "1",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 311.660245
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "anthropicclaude4.8opus",
+            "version": "1",
+            "pricingMode": "Cached",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000,
+              "readCachedInputTokensPerRequest": 300,
+              "writeCachedInputTokensPerRequest": 200
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 331.2508615
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt5.4",
+            "version": "2026-03-05",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 148.11953000000003
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt5.4",
+            "version": "2026-03-05",
+            "pricingMode": "Cached",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000,
+              "readCachedInputTokensPerRequest": 300
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 149.033378
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "anthropicclaude4.7opus",
+            "version": "1",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 311.660245
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "anthropicclaude4.7opus",
+            "version": "1",
+            "pricingMode": "Cached",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000,
+              "readCachedInputTokensPerRequest": 300,
+              "writeCachedInputTokensPerRequest": 200
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 331.2508615
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt5.2",
+            "version": "2025-12-11",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 137.45797000000002
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt5.2",
+            "version": "2025-12-11",
+            "pricingMode": "Cached",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000,
+              "readCachedInputTokensPerRequest": 300
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 138.143356
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "anthropicclaude4.6opus",
+            "version": "1",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 311.660245
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "anthropicclaude4.6opus",
+            "version": "1",
+            "pricingMode": "Cached",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000,
+              "readCachedInputTokensPerRequest": 300,
+              "writeCachedInputTokensPerRequest": 200
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 331.2508615
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt5.1",
+            "version": "001",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 98.5242375
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "anthropicclaude4.6sonnet",
+            "version": "1",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 188.38595750000005
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "anthropicclaude4.6sonnet",
+            "version": "1",
+            "pricingMode": "Cached",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000,
+              "readCachedInputTokensPerRequest": 300,
+              "writeCachedInputTokensPerRequest": 200
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 199.1998255
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt5.3codex",
+            "version": "2026-02-24",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 137.45797000000002
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt5.3codex",
+            "version": "2026-02-24",
+            "pricingMode": "Cached",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000,
+              "readCachedInputTokensPerRequest": 300
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 138.143356
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "anthropicclaude4.5opus",
+            "version": "1",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 311.660245
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "anthropicclaude4.5opus",
+            "version": "1",
+            "pricingMode": "Cached",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000,
+              "readCachedInputTokensPerRequest": 300,
+              "writeCachedInputTokensPerRequest": 200
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 331.2508615
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt5mini",
+            "version": "2025-08-07",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 20.180810000000005
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt5mini",
+            "version": "2025-08-07",
+            "pricingMode": "Cached",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000,
+              "readCachedInputTokensPerRequest": 300
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 20.295041000000005
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "anthropicclaude4.5sonnet",
+            "version": "1",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 188.38595750000005
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "anthropicclaude4.5sonnet",
+            "version": "1",
+            "pricingMode": "Cached",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000,
+              "readCachedInputTokensPerRequest": 300,
+              "writeCachedInputTokensPerRequest": 200
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 199.1998255
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gemini3.5flash",
+            "version": "001",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 157.73397250000002
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gemini3.5flash",
+            "version": "001",
+            "pricingMode": "Cached",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000,
+              "readCachedInputTokensPerRequest": 300
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 158.704936
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "anthropicclaude4.5haiku",
+            "version": "1",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 65.0164775
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "anthropicclaude4.5haiku",
+            "version": "1",
+            "pricingMode": "Cached",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000,
+              "readCachedInputTokensPerRequest": 300,
+              "writeCachedInputTokensPerRequest": 200
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 69.24302449999999
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt5.4nano",
+            "version": "2026-03-17",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 12.755795
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt5.4nano",
+            "version": "2026-03-17",
+            "pricingMode": "Cached",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000,
+              "readCachedInputTokensPerRequest": 300
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 12.8129105
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt5nano",
+            "version": "2025-08-07",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 4.18847
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt5nano",
+            "version": "2025-08-07",
+            "pricingMode": "Cached",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000,
+              "readCachedInputTokensPerRequest": 300
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 4.2455855
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "anthropicclaude4opus",
+            "version": "1",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 843.8815125000001
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "anthropicclaude4opus",
+            "version": "1",
+            "pricingMode": "Cached",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000,
+              "readCachedInputTokensPerRequest": 300,
+              "writeCachedInputTokensPerRequest": 200
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 896.599119
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt4.1",
+            "version": "2025-04-14",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 96.144425
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt4.1",
+            "version": "2025-04-14",
+            "pricingMode": "Cached",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000,
+              "readCachedInputTokensPerRequest": 300
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 97.97212099999999
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt4.1",
+            "version": "2025-04-14",
+            "pricingMode": "Batch",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 48.0722125
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "anthropicclaude4sonnet",
+            "version": "1",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 171.72727
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "anthropicclaude4sonnet",
+            "version": "1",
+            "pricingMode": "Cached",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000,
+              "readCachedInputTokensPerRequest": 300,
+              "writeCachedInputTokensPerRequest": 200
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 182.541138
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt4.1mini",
+            "version": "2025-04-14",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 19.324077499999998
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt4.1mini",
+            "version": "2025-04-14",
+            "pricingMode": "Cached",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000,
+              "readCachedInputTokensPerRequest": 300
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 19.723886
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt4.1mini",
+            "version": "2025-04-14",
+            "pricingMode": "Batch",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 9.662038749999999
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gemini3.1flashlite",
+            "version": "001",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 26.6539
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gemini3.1flashlite",
+            "version": "001",
+            "pricingMode": "Cached",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000,
+              "readCachedInputTokensPerRequest": 300
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 26.825246500000002
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt4o",
+            "version": "2024-05-13",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 206.37733999999998
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt4o",
+            "version": "2024-08-06",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 119.18101
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt4o",
+            "version": "2024-11-20",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 131.08007250000003
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gemini2.5pro200k",
+            "version": "001",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 94.7165375
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gemini2.5pro200k",
+            "version": "001",
+            "pricingMode": "Cached",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000,
+              "readCachedInputTokensPerRequest": 300
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 95.230577
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gemini2.5pro1M",
+            "version": "001",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 155.544545
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gemini2.5pro1M",
+            "version": "001",
+            "pricingMode": "Cached",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000,
+              "readCachedInputTokensPerRequest": 300
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 156.51550849999998
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt4omini",
+            "version": "2024-07-18",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 7.1394375000000005
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt4.1nano",
+            "version": "2025-04-14",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 5.521165
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gpt4.1nano",
+            "version": "2025-04-14",
+            "pricingMode": "Batch",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 2.7605825
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gemini2.5flash",
+            "version": "001",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 26.177937500000002
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gemini2.5flash",
+            "version": "001",
+            "pricingMode": "Cached",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000,
+              "readCachedInputTokensPerRequest": 300
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 26.349284
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "amazonnovapremier",
+            "version": "1",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 143.6454825
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "o4mini",
+            "version": "2025-04-16",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 51.975105
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "o4mini",
+            "version": "2025-04-16",
+            "pricingMode": "Cached",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000,
+              "readCachedInputTokensPerRequest": 300
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 52.9460685
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "o3",
+            "version": "2025-04-16",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 464.15862999999996
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gemini2.5flashimage",
+            "version": "001",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "inputImageTokensPerRequest": 300,
+              "outputImageTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 207.3863805
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "amazonnovapro",
+            "version": "1",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 41.5991225
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "o3mini",
+            "version": "2025-01-31",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 51.975105
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gemini2.5flashlite",
+            "version": "001",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 5.711550000000001
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gemini2.5flashlite",
+            "version": "001",
+            "pricingMode": "Cached",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000,
+              "readCachedInputTokensPerRequest": 300
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 5.7686655
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "amazonnovalite",
+            "version": "1",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 3.0461600000000004
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "amazonnovalite",
+            "version": "2",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 33.983722500000006
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "o1",
+            "version": "2024-12-17",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 698.522565
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "amazonnovamicro",
+            "version": "1",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 2.0942350000000003
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "o1mini",
+            "version": "2024-09-12",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 142.50317250000003
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "coherecommandareasoning",
+            "version": "2508",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 72.06072250000001
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "gptrealtime",
+            "version": "2025-08-28",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTextTokensPerRequest": 500,
+              "outputTextTokensPerRequest": 100,
+              "inputAudioTokensPerRequest": 700,
+              "outputAudioTokensPerRequest": 300,
+              "requestsPerMonth": 10000,
+              "cachedAudioTokensPerRequest": 200
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 525.7862544999999
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "mistralaimistrallargeinstruct",
+            "version": "2407",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 73.10784
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "sonarpro",
+            "version": "perplexity-us",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 280.1515275
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "mistralaimistralmedium",
+            "version": "3.5",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 58.5433875
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "textembedding3large",
+            "version": "1",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 3.42693
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "sonar",
+            "version": "perplexity-us",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 115.75408000000002
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "textembedding3small",
+            "version": "1",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 0.7615400000000001
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "mistralaimistralmediuminstruct",
+            "version": "2505",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 25.321205000000003
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "geminiembedding",
+            "version": "001",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 4.188470000000001
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "geminiembedding2",
+            "version": "001",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "requestsPerMonth": 10000,
+              "inputImageTokensPerRequest": 300,
+              "inputAudioTokensPerRequest": 300,
+              "inputVideoTokensPerRequest": 200
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 94.77365300000001
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "mistralaimistralsmallinstruct",
+            "version": "2503",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 3.3317375
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "mistralaimistralsmall",
+            "version": "2603",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 5.33078
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "textembeddingada002",
+            "version": "2",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 2.66539
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "sapabap1",
+            "version": "1",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "outputTokensPerRequest": 500,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 34.459685
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "amazontitanembedtext",
+            "version": "2.0",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 5.33078
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "sap-rpt-1-large",
+            "version": "1",
+            "pricingMode": "Standard",
+            "usage": {
+              "contextCellsPerPrediction": 200,
+              "predictedCellsPerPrediction": 100,
+              "predictionsPerMonth": 1000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 14.735798999999998
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "sap-rpt-1.5",
+            "version": "1",
+            "pricingMode": "Standard",
+            "usage": {
+              "contextCellsPerPrediction": 200,
+              "predictedCellsPerPrediction": 100,
+              "predictionsPerMonth": 1000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 3.9866618999999996
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "amazontitanembedimage",
+            "version": "default",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 25.13082
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "sap-rpt-1-small",
+            "version": "1",
+            "pricingMode": "Standard",
+            "usage": {
+              "contextCellsPerPrediction": 200,
+              "predictedCellsPerPrediction": 100,
+              "predictionsPerMonth": 1000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 3.9866618999999996
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "sap-rpt-1.5-large",
+            "version": "1",
+            "pricingMode": "Standard",
+            "usage": {
+              "contextCellsPerPrediction": 200,
+              "predictedCellsPerPrediction": 100,
+              "predictionsPerMonth": 1000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 14.735798999999998
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "cohereranker",
+            "version": "v3.5",
+            "pricingMode": "Standard",
+            "usage": {
+              "queriesPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 0.02170389
+    },
+    {
+      "arguments": {
+        "foundationModels": [
+          {
+            "modelId": "nvidiallama3.2nvembedqa1b",
+            "version": "2",
+            "pricingMode": "Standard",
+            "usage": {
+              "inputTokensPerRequest": 2000,
+              "requestsPerMonth": 10000
+            }
+          }
+        ]
+      },
+      "expectedMonthlyCU": 2.66539
+    }
+  ]
+}

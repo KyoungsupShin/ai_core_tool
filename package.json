@@ -1,0 +1,16 @@
+{
+  "name": "sap-ai-core-estimate-tool",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {"node": ">=20"},
+  "exports": "./src/tools.mjs",
+  "scripts": {
+    "test": "node --test",
+    "tools": "node src/cli.mjs",
+    "snapshot": "node scripts/import-snapshot.mjs",
+    "snapshot:diff": "node scripts/diff-snapshot.mjs"
+  },
+  "dependencies": {"ajv": "8.17.1", "decimal.js": "10.6.0"},
+  "devDependencies": {"acorn": "8.15.0"}
+}

@@ -1,0 +1,4232 @@
+{
+  "schemaVersion": 1,
+  "pricingVersion": "b6177ef643f4c43b4e76eda5da01ceaa9f8a6999f619c00c114125f663357a94",
+  "source": {
+    "site": "https://ai-core-calculator.cfapps.eu10.hana.ondemand.com/",
+    "bundleUrl": "https://ai-core-calculator.cfapps.eu10.hana.ondemand.com/assets/index-nfF2cyCj.js",
+    "capturedAt": "2026-11-10T06:54:55.368Z"
+  },
+  "constants": {
+    "CAPACITY_UNITS_PER_TOKEN": 1.90385,
+    "HOURS_PER_MONTH": 730
+  },
+  "orchestration": {
+    "contentFilter": {
+      "external": 0.0003,
+      "internal": 0.0003
+    },
+    "grounding": {
+      "external": 0.0005365,
+      "internal": 0.0005365
+    },
+    "groundingStorage": {
+      "external": 0.205563,
+      "internal": 0.205563
+    },
+    "translation": {
+      "external": 0.00162,
+      "internal": 0.00162
+    },
+    "translationBlocksPerCall": 24,
+    "dataMasking": {
+      "external": 0.00118,
+      "internal": 0.00118
+    },
+    "inferenceObservability": {
+      "external": 0.00089,
+      "internal": 0.00089
+    }
+  },
+  "storage": {
+    "id": "STANDARD",
+    "name": "Standard SSD Volumes",
+    "pricePerHour": {
+      "external": 0.0003,
+      "internal": 0.0003
+    },
+    "unitOfMeasure": "CU / GB / Hour",
+    "icon": "database"
+  },
+  "baseline": {
+    "id": "BASELINE",
+    "name": "Fixed cluster resources",
+    "pricePerHour": {
+      "external": 1.2241,
+      "internal": 1.2241
+    },
+    "unitOfMeasure": "CU / Hour",
+    "icon": "cloud",
+    "pieces": 730
+  },
+  "models": [
+    {
+      "KEY": "text-embedding-v4",
+      "NAME": "Text Embedding V4",
+      "CATEGORY": "Alibaba",
+      "DISPLAY_NAME": " text-embedding-v4",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "Alibaba",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "alibaba-bailian",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 32000,
+      "INPUT_TYPES": [
+        "text"
+      ],
+      "CAPABILITIES": [
+        "embedding"
+      ],
+      "STREAMING_SUPPORTED": false,
+      "VERSION": [
+        {
+          "KEY": "latest",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "latest",
+          "INPUT_TOKENS": 0.00005,
+          "OUTPUT_TOKENS": 0,
+          "READ_CACHED_INPUT_TOKENS": 0,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "qwen3.8-max",
+      "NAME": "Qwen 3.8 Max",
+      "CATEGORY": "Alibaba",
+      "DISPLAY_NAME": "Qwen3.8-max",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "Alibaba",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "alibaba-bailian",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 1000000,
+      "INPUT_TYPES": [
+        "text"
+      ],
+      "CAPABILITIES": [
+        "text-generation"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "latest",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "latest",
+          "INPUT_TOKENS": 0.00115,
+          "OUTPUT_TOKENS": 0.00325,
+          "READ_CACHED_INPUT_TOKENS": 0.00014,
+          "WRITE_CACHED_INPUT_TOKENS": 0.00143
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "qwen3.7-max",
+      "NAME": "Qwen 3.7 Max",
+      "CATEGORY": "Alibaba",
+      "DISPLAY_NAME": "Qwen3.7-max",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "Alibaba",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "alibaba-bailian",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 1000000,
+      "INPUT_TYPES": [
+        "text"
+      ],
+      "CAPABILITIES": [
+        "text-generation"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "latest",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "latest",
+          "INPUT_TOKENS": 0.00115,
+          "OUTPUT_TOKENS": 0.00325,
+          "READ_CACHED_INPUT_TOKENS": 0.00023,
+          "WRITE_CACHED_INPUT_TOKENS": 0.00143
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "qwen3.7-plus-tier-1",
+      "NAME": "Qwen 3.7 Plus Tier 1 <256k",
+      "CATEGORY": "Alibaba",
+      "DISPLAY_NAME": "Qwen3.7-plus",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "Alibaba",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "alibaba-bailian",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 1000000,
+      "INPUT_TYPES": [
+        "text"
+      ],
+      "CAPABILITIES": [
+        "text-generation"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "latest",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "latest",
+          "INPUT_TOKENS": 0.00026,
+          "OUTPUT_TOKENS": 0.00083,
+          "READ_CACHED_INPUT_TOKENS": 0.00005,
+          "WRITE_CACHED_INPUT_TOKENS": 0.00032
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "qwen3.7-plus-tier-2",
+      "NAME": "Qwen 3.7 Plus Tier 2 >256k",
+      "CATEGORY": "Alibaba",
+      "DISPLAY_NAME": "Qwen3.7-plus",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "Alibaba",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "alibaba-bailian",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 1000000,
+      "INPUT_TYPES": [
+        "text"
+      ],
+      "CAPABILITIES": [
+        "text-generation"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "latest",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "latest",
+          "INPUT_TOKENS": 0.00061,
+          "OUTPUT_TOKENS": 0.0022,
+          "READ_CACHED_INPUT_TOKENS": 0.00012,
+          "WRITE_CACHED_INPUT_TOKENS": 0.00076
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "qwen3.6-plus-tier-1",
+      "NAME": "Qwen 3.6 Plus Tier 1 <256k",
+      "CATEGORY": "Alibaba",
+      "DISPLAY_NAME": "Qwen3.6-plus",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "Alibaba",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "alibaba-bailian",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 1000000,
+      "INPUT_TYPES": [
+        "text"
+      ],
+      "CAPABILITIES": [
+        "text-generation"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "latest",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "latest",
+          "INPUT_TOKENS": 0.00026,
+          "OUTPUT_TOKENS": 0.00117,
+          "READ_CACHED_INPUT_TOKENS": 0.00005,
+          "WRITE_CACHED_INPUT_TOKENS": 0.00032
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "qwen3.6-plus-tier-2",
+      "NAME": "Qwen 3.6 Plus Tier 2 >256k",
+      "CATEGORY": "Alibaba",
+      "DISPLAY_NAME": "Qwen3.6-plus",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "Alibaba",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "alibaba-bailian",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 1000000,
+      "INPUT_TYPES": [
+        "text"
+      ],
+      "CAPABILITIES": [
+        "text-generation"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "latest",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "latest",
+          "INPUT_TOKENS": 0.00077,
+          "OUTPUT_TOKENS": 0.00424,
+          "READ_CACHED_INPUT_TOKENS": 0.00015,
+          "WRITE_CACHED_INPUT_TOKENS": 0.00097
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "qwen3.6-flash-tier-1",
+      "NAME": "Qwen 3.6 Flash Tier 1 <256k",
+      "CATEGORY": "Alibaba",
+      "DISPLAY_NAME": "Qwen3.6-flash",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "Alibaba",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "alibaba-bailian",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 1000000,
+      "INPUT_TYPES": [
+        "text"
+      ],
+      "CAPABILITIES": [
+        "text-generation"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "latest",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "latest",
+          "INPUT_TOKENS": 0.00019,
+          "OUTPUT_TOKENS": 0.00077,
+          "READ_CACHED_INPUT_TOKENS": 0.00004,
+          "WRITE_CACHED_INPUT_TOKENS": 0.00023
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "qwen3.6-flash-tier-2",
+      "NAME": "Qwen 3.6 Flash Tier 2 >256k",
+      "CATEGORY": "Alibaba",
+      "DISPLAY_NAME": "Qwen3.6-flash",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "Alibaba",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "alibaba-bailian",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 1000000,
+      "INPUT_TYPES": [
+        "text"
+      ],
+      "CAPABILITIES": [
+        "text-generation"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "latest",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "latest",
+          "INPUT_TOKENS": 0.0005,
+          "OUTPUT_TOKENS": 0.00261,
+          "READ_CACHED_INPUT_TOKENS": 0.0001,
+          "WRITE_CACHED_INPUT_TOKENS": 0.00063
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "sap-abap-2",
+      "NAME": "sap-abap-2",
+      "CATEGORY": "SAP",
+      "DISPLAY_NAME": "SAP ABAP 2",
+      "ACCESS_TYPE": "SAP-Hosted",
+      "PROVIDER": "SAP",
+      "ALLOWED_SCENARIOS": {
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 65536,
+      "INPUT_TYPES": [
+        "text"
+      ],
+      "CAPABILITIES": [
+        "text-generation"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "1",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "1",
+          "INPUT_TOKENS": 0.00035,
+          "OUTPUT_TOKENS": 0.00166,
+          "READ_CACHED_INPUT_TOKENS": 0.00007,
+          "WRITE_CACHED_INPUT_TOKENS": 0.00044
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "nova-core",
+      "NAME": "nova-core",
+      "CATEGORY": "SAP",
+      "DISPLAY_NAME": "Nova Core",
+      "ACCESS_TYPE": "SAP-Hosted",
+      "PROVIDER": "SAP",
+      "ALLOWED_SCENARIOS": {
+        "orchestration": "orchestration",
+        "foundation-models": "aicore-sap"
+      },
+      "CONTEXT_LENGTH": 131072,
+      "INPUT_TYPES": [
+        "text"
+      ],
+      "CAPABILITIES": [
+        "text-generation"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "2608",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "2608",
+          "INPUT_TOKENS": 0.00013,
+          "OUTPUT_TOKENS": 0.00057,
+          "READ_CACHED_INPUT_TOKENS": 0.00003,
+          "WRITE_CACHED_INPUT_TOKENS": 0.00016
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "sap-rpt-ts",
+      "NAME": "SAP RPT TS",
+      "CATEGORY": "SAP",
+      "DISPLAY_NAME": "SAP RPT TS",
+      "ACCESS_TYPE": "SAP-Hosted",
+      "PROVIDER": "SAP",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "aicore-sap"
+      },
+      "CONTEXT_LENGTH": null,
+      "INPUT_TYPES": [
+        "text"
+      ],
+      "CAPABILITIES": [
+        "tabular"
+      ],
+      "STREAMING_SUPPORTED": false,
+      "VERSION": [
+        {
+          "KEY": "1",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "1",
+          "NUM_INPUT_CELLS": 4e-8,
+          "NUM_PREDICTION": 1.21e-7
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "gpt6astra272k",
+      "NAME": "gpt-6-astra (<=272k tokens)",
+      "CATEGORY": "Azure",
+      "DISPLAY_NAME": "GPT 6 Astra",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "OpenAI",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "azure-openai",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 1050000,
+      "INPUT_TYPES": [
+        "text",
+        "image"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition",
+        "reasoning"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "2026-09-03",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "2026-09-03",
+          "INPUT_TOKENS": 0.00677,
+          "OUTPUT_TOKENS": 0.01346,
+          "READ_CACHED_INPUT_TOKENS": 0.00068,
+          "WRITE_CACHED_INPUT_TOKENS": 0.00846
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "gpt6astra1M50K",
+      "NAME": "gpt-6-astra (>272k tokens)",
+      "CATEGORY": "Azure",
+      "DISPLAY_NAME": "GPT 6 Astra",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "OpenAI",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "azure-openai",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 1050000,
+      "INPUT_TYPES": [
+        "text",
+        "image"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition",
+        "reasoning"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "2026-09-03",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "2026-09-03",
+          "INPUT_TOKENS": 0.03354,
+          "OUTPUT_TOKENS": 0.05027,
+          "READ_CACHED_INPUT_TOKENS": 0.00335,
+          "WRITE_CACHED_INPUT_TOKENS": 0.04192
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "gpt6luna272k",
+      "NAME": "gpt-6-luna (<=272k tokens)",
+      "CATEGORY": "Azure",
+      "DISPLAY_NAME": "GPT 6 Luna",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "OpenAI",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "azure-openai",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 1050000,
+      "INPUT_TYPES": [
+        "text",
+        "image"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition",
+        "reasoning"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "2026-09-22",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "2026-09-22",
+          "INPUT_TOKENS": 0.00014,
+          "OUTPUT_TOKENS": 0.00041,
+          "READ_CACHED_INPUT_TOKENS": 0.00001,
+          "WRITE_CACHED_INPUT_TOKENS": 0.00018
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "gpt6luna1M50K",
+      "NAME": "gpt-6-luna (>272k tokens)",
+      "CATEGORY": "Azure",
+      "DISPLAY_NAME": "GPT 6 Luna",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "OpenAI",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "azure-openai",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 1050000,
+      "INPUT_TYPES": [
+        "text",
+        "image"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition",
+        "reasoning"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "2026-09-22",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "2026-09-22",
+          "INPUT_TOKENS": 0.00021,
+          "OUTPUT_TOKENS": 0.00058,
+          "READ_CACHED_INPUT_TOKENS": 0.00002,
+          "WRITE_CACHED_INPUT_TOKENS": 0.00026
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "gpt6.1sol272k",
+      "NAME": "gpt-6.1-sol (<=272k tokens)",
+      "CATEGORY": "Azure",
+      "DISPLAY_NAME": "GPT 6.1 Sol",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "OpenAI",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "azure-openai",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 1050000,
+      "INPUT_TYPES": [
+        "text",
+        "image"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition",
+        "reasoning"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "2026-09-29",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "2026-09-29",
+          "INPUT_TOKENS": 0.00141,
+          "OUTPUT_TOKENS": 0.00677,
+          "READ_CACHED_INPUT_TOKENS": 0.00014,
+          "WRITE_CACHED_INPUT_TOKENS": 0.00176
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "gpt6.1sol1M50K",
+      "NAME": "gpt-6.1-sol (>272k tokens)",
+      "CATEGORY": "Azure",
+      "DISPLAY_NAME": "GPT 6.1 Sol",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "OpenAI",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "azure-openai",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 1050000,
+      "INPUT_TYPES": [
+        "text",
+        "image"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition",
+        "reasoning"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "2026-09-29",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "2026-09-29",
+          "INPUT_TOKENS": 0.00275,
+          "OUTPUT_TOKENS": 0.01011,
+          "READ_CACHED_INPUT_TOKENS": 0.00028,
+          "WRITE_CACHED_INPUT_TOKENS": 0.00344
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "tabpfn-3.5-plus100k",
+      "NAME": "TabPFN 3.5 Plus (<= 100k context rows)",
+      "CATEGORY": "SAP",
+      "DISPLAY_NAME": "Prior Labs TabPFN-3.5-Plus",
+      "ACCESS_TYPE": "SAP-Hosted",
+      "PROVIDER": "PriorLabs",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "prior-labs"
+      },
+      "CONTEXT_LENGTH": null,
+      "INPUT_TYPES": [
+        "text"
+      ],
+      "CAPABILITIES": [
+        "tabular"
+      ],
+      "STREAMING_SUPPORTED": false,
+      "VERSION": [
+        {
+          "KEY": "2609",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "2609",
+          "NUM_INPUT_CELLS": 5.5e-7,
+          "NUM_PREDICTION": 0.0000763
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "tabpfn-3.5-plus1M50K",
+      "NAME": "TabPFN 3.5 Plus (> 100k context rows)",
+      "CATEGORY": "SAP",
+      "DISPLAY_NAME": "Prior Labs TabPFN-3.5-Plus",
+      "ACCESS_TYPE": "SAP-Hosted",
+      "PROVIDER": "PriorLabs",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "prior-labs"
+      },
+      "CONTEXT_LENGTH": null,
+      "INPUT_TYPES": [
+        "text"
+      ],
+      "CAPABILITIES": [
+        "tabular"
+      ],
+      "STREAMING_SUPPORTED": false,
+      "VERSION": [
+        {
+          "KEY": "2609",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "2609",
+          "NUM_INPUT_CELLS": 0.0000076,
+          "NUM_PREDICTION": 0.000114
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "qwen3.827bdevpreview",
+      "NAME": "qwen3.8-27b-dev-preview",
+      "CATEGORY": "Opensource",
+      "DISPLAY_NAME": "Qwen3.8 27B Dev Preview",
+      "ACCESS_TYPE": "SAP-Hosted",
+      "PROVIDER": "Alibaba",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "aicore-opensource",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 262144,
+      "INPUT_TYPES": [
+        "text"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition",
+        "reasoning"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "2609-dev-preview",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "2609-dev-preview",
+          "INPUT_TOKENS": 0.00019,
+          "OUTPUT_TOKENS": 0.00146,
+          "READ_CACHED_INPUT_TOKENS": 0,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "internal"
+    },
+    {
+      "KEY": "gemini3.5flashlite",
+      "NAME": "gemini-3.5-flash-lite",
+      "CATEGORY": "Google",
+      "DISPLAY_NAME": "Gemini 3.5 Flash Lite",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "Google",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "gcp-vertexai",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 1048576,
+      "INPUT_TYPES": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition",
+        "speech-to-text",
+        "reasoning"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "001",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "001",
+          "INPUT_TOKENS": 0.00039,
+          "OUTPUT_TOKENS": 0.00278,
+          "READ_CACHED_INPUT_TOKENS": 0.00004,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "sap-rpt-1.6",
+      "NAME": "SAP RPT 1.6",
+      "CATEGORY": "SAP",
+      "DISPLAY_NAME": "SAP RPT 1.6",
+      "ACCESS_TYPE": "SAP-Hosted",
+      "PROVIDER": "SAP",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "aicore-sap"
+      },
+      "CONTEXT_LENGTH": null,
+      "INPUT_TYPES": [
+        "text"
+      ],
+      "CAPABILITIES": [
+        "tabular"
+      ],
+      "STREAMING_SUPPORTED": false,
+      "VERSION": [
+        {
+          "KEY": "1",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "1",
+          "NUM_INPUT_CELLS": 2e-7,
+          "NUM_PREDICTION": 0.00002054
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "sap-rpt-1.6-large-tier-1",
+      "NAME": "SAP RPT 1.6 Large (Default Context)",
+      "CATEGORY": "SAP",
+      "DISPLAY_NAME": "SAP RPT 1.6 Large (Default Context)",
+      "ACCESS_TYPE": "SAP-Hosted",
+      "PROVIDER": "SAP",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "aicore-sap"
+      },
+      "CONTEXT_LENGTH": null,
+      "INPUT_TYPES": [
+        "text"
+      ],
+      "CAPABILITIES": [
+        "tabular"
+      ],
+      "STREAMING_SUPPORTED": false,
+      "VERSION": [
+        {
+          "KEY": "1",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "1",
+          "NUM_INPUT_CELLS": 5.5e-7,
+          "NUM_PREDICTION": 0.0000763
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "sap-rpt-1.6-large-tier-2",
+      "NAME": "SAP RPT 1.6 Large (Deep Context)",
+      "CATEGORY": "SAP",
+      "DISPLAY_NAME": "SAP RPT 1.6 Large (Deep Context)",
+      "ACCESS_TYPE": "SAP-Hosted",
+      "PROVIDER": "SAP",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "aicore-sap"
+      },
+      "CONTEXT_LENGTH": null,
+      "INPUT_TYPES": [
+        "text"
+      ],
+      "CAPABILITIES": [
+        "tabular"
+      ],
+      "STREAMING_SUPPORTED": false,
+      "VERSION": [
+        {
+          "KEY": "1",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "1",
+          "NUM_INPUT_CELLS": 0.00000275,
+          "NUM_PREDICTION": 0.0003815
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "nvidiallamanemotronembed1b",
+      "NAME": "nvidia--llama-nemotron-embed-1b",
+      "CATEGORY": "NVIDIA",
+      "DISPLAY_NAME": "Llama Nemotron Embed 1b V2",
+      "ACCESS_TYPE": "SAP-Managed",
+      "PROVIDER": "NVIDIA",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "aicore-nvidia",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": null,
+      "INPUT_TYPES": [
+        "text"
+      ],
+      "CAPABILITIES": [
+        "embedding"
+      ],
+      "STREAMING_SUPPORTED": false,
+      "VERSION": [
+        {
+          "KEY": "2",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "NAME": "2",
+          "INPUT_TOKENS": 0.00007,
+          "OUTPUT_TOKENS": 0,
+          "READ_CACHED_INPUT_TOKENS": 0,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "gpt5.6sol272k",
+      "NAME": "gpt-5.6-sol (<=272k tokens)",
+      "CATEGORY": "Azure",
+      "DISPLAY_NAME": "GPT 5.6 Sol",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "OpenAI",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "azure-openai",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 1050000,
+      "INPUT_TYPES": [
+        "text",
+        "image"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition",
+        "reasoning"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "2026-07-09",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "2026-07-09",
+          "INPUT_TOKENS": 0.00342,
+          "OUTPUT_TOKENS": 0.02015,
+          "READ_CACHED_INPUT_TOKENS": 0.00034,
+          "WRITE_CACHED_INPUT_TOKENS": 0.00427
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "gpt5.6sol1M50K",
+      "NAME": "gpt-5.6-sol (>272k tokens)",
+      "CATEGORY": "Azure",
+      "DISPLAY_NAME": "GPT 5.6 Sol",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "OpenAI",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "azure-openai",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 1050000,
+      "INPUT_TYPES": [
+        "text",
+        "image"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition",
+        "reasoning"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "2026-07-09",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "2026-07-09",
+          "INPUT_TOKENS": 0.00677,
+          "OUTPUT_TOKENS": 0.03019,
+          "READ_CACHED_INPUT_TOKENS": 0.00068,
+          "WRITE_CACHED_INPUT_TOKENS": 0.00846
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "gpt5.6Terra272k",
+      "NAME": "gpt-5.6-terra (<=272k tokens)",
+      "CATEGORY": "Azure",
+      "DISPLAY_NAME": "GPT 5.6 Terra",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "OpenAI",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "azure-openai",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 1050000,
+      "INPUT_TYPES": [
+        "text",
+        "image"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition",
+        "reasoning"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "2026-07-09",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "2026-07-09",
+          "INPUT_TOKENS": 0.00141,
+          "OUTPUT_TOKENS": 0.0081,
+          "READ_CACHED_INPUT_TOKENS": 0.00014,
+          "WRITE_CACHED_INPUT_TOKENS": 0.00176
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "gpt5.6terra1M50K",
+      "NAME": "gpt-5.6-terra (>272k tokens)",
+      "CATEGORY": "Azure",
+      "DISPLAY_NAME": "GPT 5.6 Terra",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "OpenAI",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "azure-openai",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 1050000,
+      "INPUT_TYPES": [
+        "text",
+        "image"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition",
+        "reasoning"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "2026-07-09",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "2026-07-09",
+          "INPUT_TOKENS": 0.00275,
+          "OUTPUT_TOKENS": 0.01212,
+          "READ_CACHED_INPUT_TOKENS": 0.00028,
+          "WRITE_CACHED_INPUT_TOKENS": 0.00344
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "gpt5.6Luna272k",
+      "NAME": "gpt-5.6-luna (<=272k tokens)",
+      "CATEGORY": "Azure",
+      "DISPLAY_NAME": "GPT 5.6 Luna",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "OpenAI",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "azure-openai",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 1050000,
+      "INPUT_TYPES": [
+        "text",
+        "image"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition",
+        "reasoning"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "2026-07-09",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "2026-07-09",
+          "INPUT_TOKENS": 0.00015,
+          "OUTPUT_TOKENS": 0.00082,
+          "READ_CACHED_INPUT_TOKENS": 0.00002,
+          "WRITE_CACHED_INPUT_TOKENS": 0.00026
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "gpt5.6luna1M50K",
+      "NAME": "gpt-5.6-luna (>272k tokens)",
+      "CATEGORY": "Azure",
+      "DISPLAY_NAME": "GPT 5.6 Luna",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "OpenAI",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "azure-openai",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 1050000,
+      "INPUT_TYPES": [
+        "text",
+        "image"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition",
+        "reasoning"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "2026-07-09",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "2026-07-09",
+          "INPUT_TOKENS": 0.00029,
+          "OUTPUT_TOKENS": 0.00122,
+          "READ_CACHED_INPUT_TOKENS": 0.00003,
+          "WRITE_CACHED_INPUT_TOKENS": 0.00043
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "gpt5.5",
+      "NAME": "gpt-5.5",
+      "CATEGORY": "Azure",
+      "DISPLAY_NAME": "GPT-5.5",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "OpenAI",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "azure-openai",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 1050000,
+      "INPUT_TYPES": [
+        "text",
+        "image"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition",
+        "reasoning"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "20260424",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "2026-04-24",
+          "INPUT_TOKENS": 0.00342,
+          "OUTPUT_TOKENS": 0.02015,
+          "READ_CACHED_INPUT_TOKENS": 0.00034,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "gpt5",
+      "NAME": "gpt-5",
+      "CATEGORY": "Azure",
+      "DISPLAY_NAME": "GPT-5",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "OpenAI",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "azure-openai",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 272000,
+      "INPUT_TYPES": [
+        "text",
+        "image"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition",
+        "reasoning"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "20250807",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "2025-08-07",
+          "INPUT_TOKENS": 0.00091,
+          "OUTPUT_TOKENS": 0.00677,
+          "READ_CACHED_INPUT_TOKENS": 0.00009,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "anthropicclaude4.8opus",
+      "NAME": "anthropic--claude-4.8-opus",
+      "CATEGORY": "Anthropic",
+      "DISPLAY_NAME": "Claude 4.8 Opus",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "Anthropic",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "aws-bedrock",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 1000000,
+      "INPUT_TYPES": [
+        "text",
+        "image"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition",
+        "reasoning"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "1",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "1",
+          "INPUT_TOKENS": 0.00367,
+          "OUTPUT_TOKENS": 0.01806,
+          "READ_CACHED_INPUT_TOKENS": 0.00037,
+          "WRITE_CACHED_INPUT_TOKENS": 0.00459,
+          "CACHE_WRITE_5M_TTL_INPUT_TOKENS": 0.00459,
+          "CACHE_WRITE_1H_TTL_INPUT_TOKENS": 0.00918
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "gpt5.4",
+      "NAME": "gpt-5.4",
+      "CATEGORY": "Azure",
+      "DISPLAY_NAME": "GPT-5.4",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "OpenAI",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "azure-openai",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 1050000,
+      "INPUT_TYPES": [
+        "text",
+        "image"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition",
+        "reasoning"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "20260305",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "2026-03-05",
+          "INPUT_TOKENS": 0.00159,
+          "OUTPUT_TOKENS": 0.0092,
+          "READ_CACHED_INPUT_TOKENS": 0.00016,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "anthropicclaude4.7opus",
+      "NAME": "anthropic--claude-4.7-opus",
+      "CATEGORY": "Anthropic",
+      "DISPLAY_NAME": "Claude 4.7 Opus",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "Anthropic",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "aws-bedrock",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 1000000,
+      "INPUT_TYPES": [
+        "text",
+        "image"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "1",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "1",
+          "INPUT_TOKENS": 0.00367,
+          "OUTPUT_TOKENS": 0.01806,
+          "READ_CACHED_INPUT_TOKENS": 0.00037,
+          "WRITE_CACHED_INPUT_TOKENS": 0.00459,
+          "CACHE_WRITE_5M_TTL_INPUT_TOKENS": 0.00459,
+          "CACHE_WRITE_1H_TTL_INPUT_TOKENS": 0.00918
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "gpt5.2",
+      "NAME": "gpt-5.2",
+      "CATEGORY": "Azure",
+      "DISPLAY_NAME": "GPT-5.2",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "OpenAI",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "azure-openai",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 400000,
+      "INPUT_TYPES": [
+        "text",
+        "image"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition",
+        "reasoning"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "20251211",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "2027-05-12",
+          "NAME": "2025-12-11",
+          "INPUT_TOKENS": 0.00125,
+          "OUTPUT_TOKENS": 0.00944,
+          "READ_CACHED_INPUT_TOKENS": 0.00012,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "anthropicclaude4.6opus",
+      "NAME": "anthropic--claude-4.6-opus",
+      "CATEGORY": "Anthropic",
+      "DISPLAY_NAME": "Claude 4.6 Opus",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "Anthropic",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "aws-bedrock",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 200000,
+      "INPUT_TYPES": [
+        "text",
+        "image"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "1",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "1",
+          "INPUT_TOKENS": 0.00367,
+          "OUTPUT_TOKENS": 0.01806,
+          "READ_CACHED_INPUT_TOKENS": 0.00037,
+          "WRITE_CACHED_INPUT_TOKENS": 0.00459,
+          "CACHE_WRITE_5M_TTL_INPUT_TOKENS": 0.00459,
+          "CACHE_WRITE_1H_TTL_INPUT_TOKENS": 0.00918
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "gpt5.1",
+      "NAME": "gpt-5.1",
+      "CATEGORY": "Azure",
+      "DISPLAY_NAME": "GPT-5.1",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "OpenAI",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "azure-openai",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 400000,
+      "INPUT_TYPES": [
+        "text",
+        "image"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition",
+        "reasoning"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "001",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "001",
+          "INPUT_TOKENS": 0.0009,
+          "OUTPUT_TOKENS": 0.00675,
+          "READ_CACHED_INPUT_TOKENS": 0,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "anthropicclaude4.6sonnet",
+      "NAME": "anthropic--claude-4.6-sonnet",
+      "CATEGORY": "Anthropic",
+      "DISPLAY_NAME": "Claude 4.6 Sonnet",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "Anthropic",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "aws-bedrock",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 1000000,
+      "INPUT_TYPES": [
+        "text",
+        "image"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "1",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "1",
+          "INPUT_TOKENS": 0.00223,
+          "OUTPUT_TOKENS": 0.01087,
+          "READ_CACHED_INPUT_TOKENS": 0.0002,
+          "WRITE_CACHED_INPUT_TOKENS": 0.00254,
+          "CACHE_WRITE_5M_TTL_INPUT_TOKENS": 0.00254,
+          "CACHE_WRITE_1H_TTL_INPUT_TOKENS": 0.00508
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "gpt5.3codex",
+      "NAME": "gpt-5.3-codex",
+      "CATEGORY": "Azure",
+      "DISPLAY_NAME": "GPT-5.3 Codex",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "OpenAI",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "azure-openai",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 400000,
+      "INPUT_TYPES": [
+        "text",
+        "image"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition",
+        "reasoning"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "20260224",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "2026-02-24",
+          "INPUT_TOKENS": 0.00125,
+          "OUTPUT_TOKENS": 0.00944,
+          "READ_CACHED_INPUT_TOKENS": 0.00012,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "anthropicclaude4.5opus",
+      "NAME": "anthropic--claude-4.5-opus",
+      "CATEGORY": "Anthropic",
+      "DISPLAY_NAME": "Claude 4.5 Opus",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "Anthropic",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "aws-bedrock",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 200000,
+      "INPUT_TYPES": [
+        "text",
+        "image"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "1",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "1",
+          "INPUT_TOKENS": 0.00367,
+          "OUTPUT_TOKENS": 0.01806,
+          "READ_CACHED_INPUT_TOKENS": 0.00037,
+          "WRITE_CACHED_INPUT_TOKENS": 0.00459,
+          "CACHE_WRITE_5M_TTL_INPUT_TOKENS": 0.00459,
+          "CACHE_WRITE_1H_TTL_INPUT_TOKENS": 0.00918
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "gpt5mini",
+      "NAME": "gpt-5-mini",
+      "CATEGORY": "Azure",
+      "DISPLAY_NAME": "GPT-5-Mini",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "OpenAI",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "azure-openai",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 272000,
+      "INPUT_TYPES": [
+        "text",
+        "image"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition",
+        "reasoning"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "20250807",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "2027-02-06",
+          "NAME": "2025-08-07",
+          "INPUT_TOKENS": 0.00019,
+          "OUTPUT_TOKENS": 0.00136,
+          "READ_CACHED_INPUT_TOKENS": 0.00002,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "anthropicclaude4.5sonnet",
+      "NAME": "anthropic--claude-4.5-sonnet",
+      "CATEGORY": "Anthropic",
+      "DISPLAY_NAME": "Claude 4.5 Sonnet",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "Anthropic",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "aws-bedrock",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 200000,
+      "INPUT_TYPES": [
+        "text",
+        "image"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition",
+        "reasoning"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "1",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "1",
+          "INPUT_TOKENS": 0.00223,
+          "OUTPUT_TOKENS": 0.01087,
+          "READ_CACHED_INPUT_TOKENS": 0.0002,
+          "WRITE_CACHED_INPUT_TOKENS": 0.00254,
+          "CACHE_WRITE_5M_TTL_INPUT_TOKENS": 0.00254,
+          "CACHE_WRITE_1H_TTL_INPUT_TOKENS": 0.00508
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "gemini3.5flash",
+      "NAME": "gemini-3.5-flash",
+      "CATEGORY": "Google",
+      "DISPLAY_NAME": "Gemini 3.5 Flash",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "Google",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "gcp-vertexai",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 1000000,
+      "INPUT_TYPES": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition",
+        "speech-to-text",
+        "reasoning"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "001",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "001",
+          "INPUT_TOKENS": 0.00169,
+          "OUTPUT_TOKENS": 0.00981,
+          "READ_CACHED_INPUT_TOKENS": 0.00017,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "anthropicclaude4.5haiku",
+      "NAME": "anthropic--claude-4.5-haiku",
+      "CATEGORY": "Anthropic",
+      "DISPLAY_NAME": "Claude 4.5 Haiku",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "Anthropic",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "aws-bedrock",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 200000,
+      "INPUT_TYPES": [
+        "text",
+        "image"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "1",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "1",
+          "INPUT_TOKENS": 0.00079,
+          "OUTPUT_TOKENS": 0.00367,
+          "READ_CACHED_INPUT_TOKENS": 0.00008,
+          "WRITE_CACHED_INPUT_TOKENS": 0.00099,
+          "CACHE_WRITE_5M_TTL_INPUT_TOKENS": 0.00099,
+          "CACHE_WRITE_1H_TTL_INPUT_TOKENS": 0.00198
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "gpt5.4nano",
+      "NAME": "gpt-5.4-nano",
+      "CATEGORY": "Azure",
+      "DISPLAY_NAME": "GPT-5.4 Nano",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "OpenAI",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "azure-openai",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 400000,
+      "INPUT_TYPES": [
+        "text",
+        "image"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition",
+        "reasoning"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "20260317",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "2026-03-17",
+          "INPUT_TOKENS": 0.00014,
+          "OUTPUT_TOKENS": 0.00078,
+          "READ_CACHED_INPUT_TOKENS": 0.00001,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "gpt5nano",
+      "NAME": "gpt-5-nano",
+      "CATEGORY": "Azure",
+      "DISPLAY_NAME": "GPT-5-Nano",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "OpenAI",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "azure-openai",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 272000,
+      "INPUT_TYPES": [
+        "text",
+        "image"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition",
+        "reasoning"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "20250807",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "2027-02-06",
+          "NAME": "2025-08-07",
+          "INPUT_TOKENS": 0.00004,
+          "OUTPUT_TOKENS": 0.00028,
+          "READ_CACHED_INPUT_TOKENS": 0.00001,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "anthropicclaude4opus",
+      "NAME": "anthropic--claude-4-opus",
+      "CATEGORY": "Anthropic",
+      "DISPLAY_NAME": "Claude 4 Opus",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "Anthropic",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "aws-bedrock",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 200000,
+      "INPUT_TYPES": [
+        "text",
+        "image"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition",
+        "reasoning"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "1",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "1",
+          "INPUT_TOKENS": 0.00988,
+          "OUTPUT_TOKENS": 0.04913,
+          "READ_CACHED_INPUT_TOKENS": 0.00099,
+          "WRITE_CACHED_INPUT_TOKENS": 0.01236
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "gpt4.1",
+      "NAME": "gpt-4.1",
+      "CATEGORY": "Azure",
+      "DISPLAY_NAME": "GPT-4.1",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "OpenAI",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "azure-openai",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 1047576,
+      "INPUT_TYPES": [
+        "text",
+        "image"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "20250414",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "2026-10-14",
+          "NAME": "2025-04-14",
+          "INPUT_TOKENS": 0.00129,
+          "OUTPUT_TOKENS": 0.00494,
+          "READ_CACHED_INPUT_TOKENS": 0.00032,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "anthropicclaude4sonnet",
+      "NAME": "anthropic--claude-4-sonnet",
+      "CATEGORY": "Anthropic",
+      "DISPLAY_NAME": "Claude 4 Sonnet",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "Anthropic",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "aws-bedrock",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 200000,
+      "INPUT_TYPES": [
+        "text",
+        "image"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition",
+        "reasoning"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "1",
+          "IS_LATEST": true,
+          "DEPRECATED": true,
+          "RETIREMENT_DATE": "2026-10-14",
+          "NAME": "1",
+          "INPUT_TOKENS": 0.00204,
+          "OUTPUT_TOKENS": 0.00988,
+          "READ_CACHED_INPUT_TOKENS": 0.0002,
+          "WRITE_CACHED_INPUT_TOKENS": 0.00254
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "gpt4.1mini",
+      "NAME": "gpt-4.1-mini",
+      "CATEGORY": "Azure",
+      "DISPLAY_NAME": "GPT-4.1 mini",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "OpenAI",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "azure-openai",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 1047576,
+      "INPUT_TYPES": [
+        "text",
+        "image"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "20250414",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "2026-10-14",
+          "NAME": "2025-04-14",
+          "INPUT_TOKENS": 0.00026,
+          "OUTPUT_TOKENS": 0.00099,
+          "READ_CACHED_INPUT_TOKENS": 0.00007,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "gemini3.1flashlite",
+      "NAME": "gemini-3.1-flash-lite",
+      "CATEGORY": "Google",
+      "DISPLAY_NAME": "Gemini 3.1 Flash Lite",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "Google",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "gcp-vertexai",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 1000000,
+      "INPUT_TYPES": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition",
+        "speech-to-text"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "001",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "001",
+          "INPUT_TOKENS": 0.00029,
+          "OUTPUT_TOKENS": 0.00164,
+          "READ_CACHED_INPUT_TOKENS": 0.00003,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "gpt4o",
+      "NAME": "gpt-4o",
+      "CATEGORY": "Azure",
+      "DISPLAY_NAME": "GPT-4o",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "OpenAI",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "azure-openai",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 128000,
+      "INPUT_TYPES": [
+        "text",
+        "image"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "20240513",
+          "IS_LATEST": false,
+          "DEPRECATED": true,
+          "RETIREMENT_DATE": "2026-10-01",
+          "NAME": "2024-05-13",
+          "INPUT_TOKENS": 0.00312,
+          "OUTPUT_TOKENS": 0.0092,
+          "READ_CACHED_INPUT_TOKENS": 0,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        },
+        {
+          "KEY": "20240806",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "2026-10-01",
+          "NAME": "2024-08-06",
+          "INPUT_TOKENS": 0.00159,
+          "OUTPUT_TOKENS": 0.00616,
+          "READ_CACHED_INPUT_TOKENS": 0,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        },
+        {
+          "KEY": "20241120",
+          "IS_LATEST": false,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "2026-10-01",
+          "NAME": "2024-11-20",
+          "INPUT_TOKENS": 0.00175,
+          "OUTPUT_TOKENS": 0.00677,
+          "READ_CACHED_INPUT_TOKENS": 0,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "gemini2.5pro200k",
+      "NAME": "gemini-2.5-pro (<=200k tokens)",
+      "CATEGORY": "Google",
+      "DISPLAY_NAME": "Gemini 2.5 Pro",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "Google",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "gcp-vertexai",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 1000000,
+      "INPUT_TYPES": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition",
+        "speech-to-text",
+        "reasoning"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "001",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "2026-10-16",
+          "NAME": "001",
+          "INPUT_TOKENS": 0.00087,
+          "OUTPUT_TOKENS": 0.00647,
+          "READ_CACHED_INPUT_TOKENS": 0.00009,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "gemini2.5pro1M",
+      "NAME": "gemini-2.5-pro (>200k tokens)",
+      "CATEGORY": "Google",
+      "DISPLAY_NAME": "Gemini 2.5 Pro",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "Google",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "gcp-vertexai",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 1000000,
+      "INPUT_TYPES": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition",
+        "speech-to-text",
+        "reasoning"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "001",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "2026-10-16",
+          "NAME": "001",
+          "INPUT_TOKENS": 0.00167,
+          "OUTPUT_TOKENS": 0.00966,
+          "READ_CACHED_INPUT_TOKENS": 0.00017,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "gpt4omini",
+      "NAME": "gpt-4o-mini",
+      "CATEGORY": "Azure",
+      "DISPLAY_NAME": "GPT-4o Mini",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "OpenAI",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "azure-openai",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 128000,
+      "INPUT_TYPES": [
+        "text",
+        "image"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "20240718",
+          "IS_LATEST": true,
+          "DEPRECATED": true,
+          "RETIREMENT_DATE": "2026-10-01",
+          "NAME": "2024-07-18",
+          "INPUT_TOKENS": 0.00009,
+          "OUTPUT_TOKENS": 0.00039,
+          "READ_CACHED_INPUT_TOKENS": 0,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "gemini3.1flashimage",
+      "NAME": "gemini-3.1-flash-image",
+      "CATEGORY": "Google",
+      "DISPLAY_NAME": "Gemini 3.1 Flash Image",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "Google",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "gcp-vertexai"
+      },
+      "CONTEXT_LENGTH": 128000,
+      "INPUT_TYPES": [
+        "text",
+        "image"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-generation"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "001",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "001",
+          "INPUT_TOKENS": 0.00056,
+          "INPUT_IMAGE_TOKENS": 0.00056,
+          "OUTPUT_TOKENS": 0.00302,
+          "OUTPUT_IMAGE_TOKENS": 0.05909,
+          "READ_CACHED_INPUT_TOKENS": 0,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "internal"
+    },
+    {
+      "KEY": "gpt4.1nano",
+      "NAME": "gpt-4.1-nano",
+      "CATEGORY": "Azure",
+      "DISPLAY_NAME": "GPT-4.1 nano",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "OpenAI",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "azure-openai",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 1047576,
+      "INPUT_TYPES": [
+        "text",
+        "image"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "20250414",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "2026-10-14",
+          "NAME": "2025-04-14",
+          "INPUT_TOKENS": 0.00008,
+          "OUTPUT_TOKENS": 0.00026,
+          "READ_CACHED_INPUT_TOKENS": 0,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "gemini3proimage",
+      "NAME": "gemini-3-pro-image",
+      "CATEGORY": "Google",
+      "DISPLAY_NAME": "Gemini 3 Pro Image",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "Google",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "gcp-vertexai"
+      },
+      "CONTEXT_LENGTH": 65536,
+      "INPUT_TYPES": [
+        "text",
+        "image"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-generation"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "001",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "001",
+          "INPUT_TOKENS": 0.00204,
+          "INPUT_IMAGE_TOKENS": 0.00204,
+          "OUTPUT_TOKENS": 0.01187,
+          "OUTPUT_IMAGE_TOKENS": 0.1181,
+          "READ_CACHED_INPUT_TOKENS": 0,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "internal"
+    },
+    {
+      "KEY": "gemini2.5flash",
+      "NAME": "gemini-2.5-flash",
+      "CATEGORY": "Google",
+      "DISPLAY_NAME": "Gemini 2.5 Flash",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "Google",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "gcp-vertexai",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 1000000,
+      "INPUT_TYPES": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition",
+        "speech-to-text"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "001",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "2026-10-16",
+          "NAME": "001",
+          "INPUT_TOKENS": 0.00027,
+          "OUTPUT_TOKENS": 0.00167,
+          "READ_CACHED_INPUT_TOKENS": 0.00003,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "amazonnovapremier",
+      "NAME": "amazon--nova-premier",
+      "CATEGORY": "Amazon",
+      "DISPLAY_NAME": "Nova Premier",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "Amazon",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "aws-bedrock",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 1000000,
+      "INPUT_TYPES": [
+        "text"
+      ],
+      "CAPABILITIES": [
+        "text-generation"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "1",
+          "IS_LATEST": true,
+          "DEPRECATED": true,
+          "RETIREMENT_DATE": "2026-09-14",
+          "NAME": "1",
+          "INPUT_TOKENS": 0.00171,
+          "OUTPUT_TOKENS": 0.00825,
+          "READ_CACHED_INPUT_TOKENS": 0,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "o4mini",
+      "NAME": "o4-mini",
+      "CATEGORY": "Azure",
+      "DISPLAY_NAME": "o4 Mini",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "OpenAI",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "azure-openai",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 200000,
+      "INPUT_TYPES": [
+        "text"
+      ],
+      "CAPABILITIES": [
+        "text-generation"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "20250416",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "2026-10-16",
+          "NAME": "2025-04-16",
+          "INPUT_TOKENS": 0.00069,
+          "OUTPUT_TOKENS": 0.0027,
+          "READ_CACHED_INPUT_TOKENS": 0.00017,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "o3",
+      "NAME": "o3",
+      "CATEGORY": "Azure",
+      "DISPLAY_NAME": "O3",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "OpenAI",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "azure-openai",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 200000,
+      "INPUT_TYPES": [
+        "text",
+        "image"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "20250416",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "2026-10-16",
+          "NAME": "2025-04-16",
+          "INPUT_TOKENS": 0.0061,
+          "OUTPUT_TOKENS": 0.02436,
+          "READ_CACHED_INPUT_TOKENS": 0,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "gemini2.5flashimage",
+      "NAME": "gemini-2.5-flash-image",
+      "CATEGORY": "Google",
+      "DISPLAY_NAME": "Gemini 2.5 Flash Image",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "Google",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "gcp-vertexai"
+      },
+      "CONTEXT_LENGTH": 65536,
+      "INPUT_TYPES": [
+        "text",
+        "image"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition",
+        "image-generation"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "001",
+          "NAME": "001",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "2026-10-02",
+          "INPUT_TOKENS": 0.00021,
+          "INPUT_IMAGE_TOKENS": 0.00021,
+          "OUTPUT_TOKENS": 0.00162,
+          "OUTPUT_IMAGE_TOKENS": 0.0192,
+          "READ_CACHED_INPUT_TOKENS": 0,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "amazonnovapro",
+      "NAME": "amazon--nova-pro",
+      "CATEGORY": "Amazon",
+      "DISPLAY_NAME": "Nova Pro",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "Amazon",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "aws-bedrock",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 300000,
+      "INPUT_TYPES": [
+        "text",
+        "image",
+        "video"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "1",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "1",
+          "INPUT_TOKENS": 0.00056,
+          "OUTPUT_TOKENS": 0.00213,
+          "READ_CACHED_INPUT_TOKENS": 0,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "o3mini",
+      "NAME": "o3-mini",
+      "CATEGORY": "Azure",
+      "DISPLAY_NAME": "O3 Mini",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "OpenAI",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "azure-openai",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 200000,
+      "INPUT_TYPES": [
+        "text"
+      ],
+      "CAPABILITIES": [
+        "text-generation"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "20250131",
+          "IS_LATEST": true,
+          "DEPRECATED": true,
+          "RETIREMENT_DATE": "2026-08-02",
+          "NAME": "2025-01-31",
+          "INPUT_TOKENS": 0.00069,
+          "OUTPUT_TOKENS": 0.0027,
+          "READ_CACHED_INPUT_TOKENS": 0,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "gemini2.5flashlite",
+      "NAME": "gemini-2.5-flash-lite",
+      "CATEGORY": "Google",
+      "DISPLAY_NAME": "Gemini 2.5 Flash Lite",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "Google",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "gcp-vertexai",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 1000000,
+      "INPUT_TYPES": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition",
+        "speech-to-text"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "001",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "2026-10-16",
+          "NAME": "001",
+          "INPUT_TOKENS": 0.00008,
+          "OUTPUT_TOKENS": 0.00028,
+          "READ_CACHED_INPUT_TOKENS": 0.00001,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "amazonnovalite",
+      "NAME": "amazon--nova-lite",
+      "CATEGORY": "Amazon",
+      "DISPLAY_NAME": "Nova Lite",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "Amazon",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "aws-bedrock",
+        "orchestration": "orchestration"
+      },
+      "INPUT_TYPES": [
+        "text",
+        "image",
+        "video"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "1",
+          "IS_LATEST": false,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "CONTEXT_LENGTH": 300000,
+          "NAME": "1",
+          "INPUT_TOKENS": 0.00004,
+          "OUTPUT_TOKENS": 0.00016,
+          "READ_CACHED_INPUT_TOKENS": 0,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        },
+        {
+          "KEY": "2",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "CONTEXT_LENGTH": 1000000,
+          "NAME": "2",
+          "INPUT_TOKENS": 0.0003,
+          "OUTPUT_TOKENS": 0.00237,
+          "READ_CACHED_INPUT_TOKENS": 0,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "o1",
+      "NAME": "o1",
+      "CATEGORY": "Azure",
+      "DISPLAY_NAME": "O1",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "OpenAI",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "azure-openai",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 200000,
+      "INPUT_TYPES": [
+        "text",
+        "image"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "20241217",
+          "IS_LATEST": true,
+          "DEPRECATED": true,
+          "RETIREMENT_DATE": "2026-07-15",
+          "NAME": "2024-12-17",
+          "INPUT_TOKENS": 0.0092,
+          "OUTPUT_TOKENS": 0.03658,
+          "READ_CACHED_INPUT_TOKENS": 0,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "amazonnovamicro",
+      "NAME": "amazon--nova-micro",
+      "CATEGORY": "Amazon",
+      "DISPLAY_NAME": "Nova Micro",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "Amazon",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "aws-bedrock",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 128000,
+      "INPUT_TYPES": [
+        "text"
+      ],
+      "CAPABILITIES": [
+        "text-generation"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "1",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "1",
+          "INPUT_TOKENS": 0.00003,
+          "OUTPUT_TOKENS": 0.0001,
+          "READ_CACHED_INPUT_TOKENS": 0,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "o1mini",
+      "NAME": "o1-mini",
+      "CATEGORY": "Azure",
+      "DISPLAY_NAME": "O1 Mini",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "OpenAI",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "azure-openai",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 128000,
+      "INPUT_TYPES": [
+        "text"
+      ],
+      "CAPABILITIES": [
+        "text-generation"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "20240912",
+          "IS_LATEST": true,
+          "DEPRECATED": true,
+          "RETIREMENT_DATE": "",
+          "NAME": "2024-09-12",
+          "INPUT_TOKENS": 0.0019,
+          "OUTPUT_TOKENS": 0.00737,
+          "READ_CACHED_INPUT_TOKENS": 0,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "coherecommandareasoning",
+      "NAME": "cohere--command-a-reasoning",
+      "CATEGORY": "Cohere",
+      "DISPLAY_NAME": "Command A Reasoning",
+      "ACCESS_TYPE": "SAP-Hosted",
+      "PROVIDER": "Cohere",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "aicore-cohere",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 256000,
+      "INPUT_TYPES": [
+        "text"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "reasoning"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "2508",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "2026-08-30",
+          "NAME": "2508",
+          "INPUT_TOKENS": 0.00063,
+          "OUTPUT_TOKENS": 0.00505,
+          "READ_CACHED_INPUT_TOKENS": 0,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "gptrealtime",
+      "NAME": "gpt-realtime",
+      "CATEGORY": "Azure",
+      "DISPLAY_NAME": "GPT Realtime",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "OpenAI",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "azure-openai"
+      },
+      "CONTEXT_LENGTH": 128000,
+      "INPUT_TYPES": [
+        "audio"
+      ],
+      "CAPABILITIES": [
+        "speech-to-speech"
+      ],
+      "STREAMING_SUPPORTED": false,
+      "VERSION": [
+        {
+          "KEY": "20250828",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "2027-02-28",
+          "NAME": "2025-08-28",
+          "INPUT_TOKENS": 0.00251,
+          "OUTPUT_TOKENS": 0.00981,
+          "INPUT_AUDIO_TOKENS": 0.01954,
+          "OUTPUT_AUDIO_TOKENS": 0.03901,
+          "INPUT_CACHED_AUDIO_TOKENS": 0,
+          "READ_CACHED_INPUT_TOKENS": 0,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "mistralaimistrallargeinstruct",
+      "NAME": "mistralai--mistral-large-instruct",
+      "CATEGORY": "Mistral",
+      "DISPLAY_NAME": "Mistral Large Instruct",
+      "ACCESS_TYPE": "SAP-Hosted",
+      "PROVIDER": "Mistral AI",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "aicore-mistralai",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 64000,
+      "INPUT_TYPES": [
+        "text"
+      ],
+      "CAPABILITIES": [
+        "text-generation"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "2407",
+          "IS_LATEST": true,
+          "DEPRECATED": true,
+          "RETIREMENT_DATE": "2026-09-30",
+          "NAME": "2407",
+          "INPUT_TOKENS": 0.00112,
+          "OUTPUT_TOKENS": 0.0032,
+          "READ_CACHED_INPUT_TOKENS": 0,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "sonarpro",
+      "NAME": "sonar-pro",
+      "CATEGORY": "Perplexity",
+      "DISPLAY_NAME": "Sonar Pro",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "Perplexity",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "perplexity-ai",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 200000,
+      "INPUT_TYPES": [
+        "text",
+        "image"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "perplexityus",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "perplexity-us",
+          "INPUT_TOKENS": 0.00243,
+          "OUTPUT_TOKENS": 0.01185,
+          "READ_CACHED_INPUT_TOKENS": 0,
+          "WRITE_CACHED_INPUT_TOKENS": 0,
+          "SEARCH_EFFORT": true,
+          "API_CALLS_PRICING": {
+            "low": 0.00393,
+            "medium": 0.00628,
+            "high": 0.00942
+          }
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "mistralaimistralmedium",
+      "NAME": "mistralai--mistral-medium",
+      "CATEGORY": "Mistral",
+      "DISPLAY_NAME": "Mistral Medium 3.5",
+      "ACCESS_TYPE": "SAP-Hosted",
+      "PROVIDER": "Mistral AI",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "aicore-mistralai",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 256000,
+      "INPUT_TYPES": [
+        "text",
+        "image"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "3.5",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "3.5",
+          "INPUT_TOKENS": 0.00067,
+          "OUTPUT_TOKENS": 0.00347,
+          "READ_CACHED_INPUT_TOKENS": 0,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "textembedding3large",
+      "NAME": "text-embedding-3-large",
+      "CATEGORY": "Azure",
+      "DISPLAY_NAME": "Text Embedding 3 Large",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "OpenAI",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "azure-openai",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": null,
+      "INPUT_TYPES": [
+        "text"
+      ],
+      "CAPABILITIES": [
+        "embedding"
+      ],
+      "STREAMING_SUPPORTED": false,
+      "VERSION": [
+        {
+          "KEY": "1",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "1",
+          "INPUT_TOKENS": 0.00009,
+          "OUTPUT_TOKENS": 0,
+          "READ_CACHED_INPUT_TOKENS": 0,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "sonar",
+      "NAME": "sonar",
+      "CATEGORY": "Perplexity",
+      "DISPLAY_NAME": "Sonar",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "Perplexity",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "perplexity-ai",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 128000,
+      "INPUT_TYPES": [
+        "text",
+        "image"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "perplexityus",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "perplexity-us",
+          "INPUT_TOKENS": 0.00086,
+          "OUTPUT_TOKENS": 0.00086,
+          "READ_CACHED_INPUT_TOKENS": 0,
+          "WRITE_CACHED_INPUT_TOKENS": 0,
+          "SEARCH_EFFORT": true,
+          "API_CALLS_PRICING": {
+            "low": 0.00393,
+            "medium": 0.00628,
+            "high": 0.00942
+          }
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "textembedding3small",
+      "NAME": "text-embedding-3-small",
+      "CATEGORY": "Azure",
+      "DISPLAY_NAME": "Text Embedding 3 Small",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "OpenAI",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "azure-openai",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": null,
+      "INPUT_TYPES": [
+        "text"
+      ],
+      "CAPABILITIES": [
+        "embedding"
+      ],
+      "STREAMING_SUPPORTED": false,
+      "VERSION": [
+        {
+          "KEY": "1",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "1",
+          "INPUT_TOKENS": 0.00002,
+          "OUTPUT_TOKENS": 0,
+          "READ_CACHED_INPUT_TOKENS": 0,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "sonardeepresearch",
+      "NAME": "sonar-deep-research",
+      "CATEGORY": "Perplexity",
+      "DISPLAY_NAME": "Sonar Deep Research",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "Perplexity",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "perplexity-ai",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 128000,
+      "INPUT_TYPES": [
+        "text",
+        "image"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "perplexityus",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "perplexity-us",
+          "INPUT_TOKENS": 0.00164,
+          "OUTPUT_TOKENS": 0.00636,
+          "READ_CACHED_INPUT_TOKENS": 0,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "internal"
+    },
+    {
+      "KEY": "mistralaimistralmediuminstruct",
+      "NAME": "mistralai--mistral-medium-instruct",
+      "CATEGORY": "Mistral",
+      "DISPLAY_NAME": "Mistral Medium Instruct",
+      "ACCESS_TYPE": "SAP-Hosted",
+      "PROVIDER": "Mistral AI",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "aicore-mistralai",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 128000,
+      "INPUT_TYPES": [
+        "text",
+        "image"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "2505",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "2026-10-30",
+          "NAME": "2505",
+          "INPUT_TOKENS": 0.00036,
+          "OUTPUT_TOKENS": 0.00122,
+          "READ_CACHED_INPUT_TOKENS": 0,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "geminiembedding",
+      "NAME": "gemini-embedding",
+      "CATEGORY": "Google",
+      "DISPLAY_NAME": "Gemini Embedding",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "Google",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "gcp-vertexai",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": null,
+      "INPUT_TYPES": [
+        "text"
+      ],
+      "CAPABILITIES": [
+        "embedding"
+      ],
+      "STREAMING_SUPPORTED": false,
+      "VERSION": [
+        {
+          "KEY": "001",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "001",
+          "INPUT_TOKENS": 0.00011,
+          "OUTPUT_TOKENS": 0,
+          "READ_CACHED_INPUT_TOKENS": 0,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "geminiembedding2",
+      "NAME": "gemini-embedding-2",
+      "CATEGORY": "Google",
+      "DISPLAY_NAME": "Gemini Embedding 2",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "Google",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "gcp-vertexai",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": null,
+      "INPUT_TYPES": [
+        "text",
+        "image",
+        "audio",
+        "video"
+      ],
+      "CAPABILITIES": [
+        "embedding"
+      ],
+      "STREAMING_SUPPORTED": false,
+      "VERSION": [
+        {
+          "KEY": "001",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "001",
+          "INPUT_TOKENS": 0.00027,
+          "OUTPUT_TOKENS": 0,
+          "INPUT_IMAGE_TOKENS": 0.00053,
+          "OUTPUT_IMAGE_TOKENS": 0,
+          "INPUT_AUDIO_TOKENS": 0.00637,
+          "OUTPUT_AUDIO_TOKENS": 0,
+          "INPUT_VIDEO_TOKENS": 0.01184,
+          "OUTPUT_VIDEO_TOKENS": 0,
+          "READ_CACHED_INPUT_TOKENS": 0,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "mistralaimistralsmallinstruct",
+      "NAME": "mistralai--mistral-small-instruct",
+      "CATEGORY": "Mistral",
+      "DISPLAY_NAME": "Mistral Small Instruct",
+      "ACCESS_TYPE": "SAP-Hosted",
+      "PROVIDER": "Mistral AI",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "aicore-mistralai",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 128000,
+      "INPUT_TYPES": [
+        "text",
+        "image"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "2503",
+          "IS_LATEST": true,
+          "DEPRECATED": true,
+          "RETIREMENT_DATE": "2026-09-30",
+          "NAME": "2503",
+          "INPUT_TOKENS": 0.00005,
+          "OUTPUT_TOKENS": 0.00015,
+          "READ_CACHED_INPUT_TOKENS": 0,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "mistralaimistralsmall",
+      "NAME": "mistralai--mistral-small",
+      "CATEGORY": "Mistral",
+      "DISPLAY_NAME": "Mistral Small 4",
+      "ACCESS_TYPE": "SAP-Hosted",
+      "PROVIDER": "Mistral AI",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "aicore-mistralai",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 128000,
+      "INPUT_TYPES": [
+        "text",
+        "image"
+      ],
+      "CAPABILITIES": [
+        "text-generation",
+        "image-recognition"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "2603",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "2026-10-30",
+          "NAME": "2603",
+          "INPUT_TOKENS": 0.00007,
+          "OUTPUT_TOKENS": 0.00028,
+          "READ_CACHED_INPUT_TOKENS": 0,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "textembeddingada002",
+      "NAME": "text-embedding-ada-002",
+      "CATEGORY": "Azure",
+      "DISPLAY_NAME": "Text Embedding Ada 002",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "OpenAI",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "azure-openai",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": null,
+      "INPUT_TYPES": [
+        "text"
+      ],
+      "CAPABILITIES": [
+        "embedding"
+      ],
+      "STREAMING_SUPPORTED": false,
+      "VERSION": [
+        {
+          "KEY": "2",
+          "IS_LATEST": true,
+          "DEPRECATED": true,
+          "RETIREMENT_DATE": "",
+          "NAME": "2",
+          "INPUT_TOKENS": 0.00007,
+          "OUTPUT_TOKENS": 0,
+          "READ_CACHED_INPUT_TOKENS": 0,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "sapabap1",
+      "NAME": "sap-abap-1",
+      "CATEGORY": "SAP",
+      "DISPLAY_NAME": "SAP ABAP 1",
+      "ACCESS_TYPE": "SAP-Hosted",
+      "PROVIDER": "SAP",
+      "ALLOWED_SCENARIOS": {
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 32768,
+      "INPUT_TYPES": [
+        "text"
+      ],
+      "CAPABILITIES": [
+        "text-generation"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "1",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "2026-10-30",
+          "NAME": "1",
+          "INPUT_TOKENS": 0.00048,
+          "OUTPUT_TOKENS": 0.0017,
+          "READ_CACHED_INPUT_TOKENS": 0,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "amazontitanembedtext",
+      "NAME": "amazon--titan-embed-text",
+      "CATEGORY": "Amazon",
+      "DISPLAY_NAME": "Titan Embed Text",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "Amazon",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "aws-bedrock",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": null,
+      "INPUT_TYPES": [
+        "text"
+      ],
+      "CAPABILITIES": [
+        "embedding"
+      ],
+      "STREAMING_SUPPORTED": false,
+      "VERSION": [
+        {
+          "KEY": "1.2",
+          "IS_LATEST": false,
+          "DEPRECATED": true,
+          "RETIREMENT_DATE": "",
+          "NAME": "1.2",
+          "INPUT_TOKENS": 0.00014,
+          "OUTPUT_TOKENS": 0,
+          "READ_CACHED_INPUT_TOKENS": 0,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        },
+        {
+          "KEY": "2.0",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "2.0",
+          "INPUT_TOKENS": 0.00014,
+          "OUTPUT_TOKENS": 0,
+          "READ_CACHED_INPUT_TOKENS": 0,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "sap-rpt-1-large",
+      "NAME": "sap-rpt-1-large",
+      "CATEGORY": "SAP",
+      "DISPLAY_NAME": "SAP RPT 1 Large",
+      "ACCESS_TYPE": "SAP-Hosted",
+      "PROVIDER": "SAP",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "aicore-sap"
+      },
+      "CONTEXT_LENGTH": null,
+      "INPUT_TYPES": [
+        "text"
+      ],
+      "CAPABILITIES": [
+        "tabular"
+      ],
+      "STREAMING_SUPPORTED": false,
+      "VERSION": [
+        {
+          "KEY": "default",
+          "IS_LATEST": false,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "2026-12-31",
+          "NAME": "default",
+          "NUM_INPUT_CELLS": 5.5e-7,
+          "NUM_PREDICTION": 0.0000763
+        },
+        {
+          "KEY": "1",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "2026-12-31",
+          "NAME": "1",
+          "NUM_INPUT_CELLS": 5.5e-7,
+          "NUM_PREDICTION": 0.0000763
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "sap-rpt-1.5",
+      "NAME": "SAP RPT 1.5",
+      "CATEGORY": "SAP",
+      "DISPLAY_NAME": "SAP RPT 1.5",
+      "ACCESS_TYPE": "SAP-Hosted",
+      "PROVIDER": "SAP",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "aicore-sap"
+      },
+      "CONTEXT_LENGTH": null,
+      "INPUT_TYPES": [
+        "text"
+      ],
+      "CAPABILITIES": [
+        "tabular"
+      ],
+      "STREAMING_SUPPORTED": false,
+      "VERSION": [
+        {
+          "KEY": "default",
+          "IS_LATEST": false,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "2026-12-31",
+          "NAME": "default",
+          "NUM_INPUT_CELLS": 2e-7,
+          "NUM_PREDICTION": 0.00002054
+        },
+        {
+          "KEY": "1",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "2026-12-31",
+          "NAME": "1",
+          "NUM_INPUT_CELLS": 2e-7,
+          "NUM_PREDICTION": 0.00002054
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "amazontitanembedimage",
+      "NAME": "amazon--titan-embed-image",
+      "CATEGORY": "Amazon",
+      "DISPLAY_NAME": "Titan Multimodal Embeddings",
+      "ACCESS_TYPE": "Remote",
+      "PROVIDER": "Amazon",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "aws-bedrock"
+      },
+      "CONTEXT_LENGTH": null,
+      "INPUT_TYPES": [
+        "text",
+        "image"
+      ],
+      "CAPABILITIES": [
+        "embedding"
+      ],
+      "STREAMING_SUPPORTED": false,
+      "VERSION": [
+        {
+          "KEY": "default",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "",
+          "NAME": "default",
+          "INPUT_TOKENS": 0.00066,
+          "OUTPUT_TOKENS": 0,
+          "READ_CACHED_INPUT_TOKENS": 0,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "sap-rpt-1-small",
+      "NAME": "sap-rpt-1-small",
+      "CATEGORY": "SAP",
+      "DISPLAY_NAME": "SAP RPT 1 Small",
+      "ACCESS_TYPE": "SAP-Hosted",
+      "PROVIDER": "SAP",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "aicore-sap"
+      },
+      "CONTEXT_LENGTH": null,
+      "INPUT_TYPES": [
+        "text"
+      ],
+      "CAPABILITIES": [
+        "tabular"
+      ],
+      "STREAMING_SUPPORTED": false,
+      "VERSION": [
+        {
+          "KEY": "default",
+          "IS_LATEST": false,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "2026-12-31",
+          "NAME": "default",
+          "NUM_INPUT_CELLS": 2e-7,
+          "NUM_PREDICTION": 0.00002054
+        },
+        {
+          "KEY": "1",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "2026-12-31",
+          "NAME": "1",
+          "NUM_INPUT_CELLS": 2e-7,
+          "NUM_PREDICTION": 0.00002054
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "sap-rpt-1.5-large",
+      "NAME": "SAP RPT 1.5 Large",
+      "CATEGORY": "SAP",
+      "DISPLAY_NAME": "SAP RPT 1.5 Large",
+      "ACCESS_TYPE": "SAP-Hosted",
+      "PROVIDER": "SAP",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "aicore-sap"
+      },
+      "CONTEXT_LENGTH": null,
+      "INPUT_TYPES": [
+        "text"
+      ],
+      "CAPABILITIES": [
+        "tabular"
+      ],
+      "STREAMING_SUPPORTED": false,
+      "VERSION": [
+        {
+          "KEY": "default",
+          "IS_LATEST": false,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "2026-12-31",
+          "NAME": "default",
+          "NUM_INPUT_CELLS": 5.5e-7,
+          "NUM_PREDICTION": 0.0000763
+        },
+        {
+          "KEY": "1",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "2026-12-31",
+          "NAME": "1",
+          "NUM_INPUT_CELLS": 5.5e-7,
+          "NUM_PREDICTION": 0.0000763
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "cohereranker",
+      "NAME": "cohere-reranker",
+      "CATEGORY": "Cohere",
+      "DISPLAY_NAME": "Cohere Reranker",
+      "ACCESS_TYPE": "SAP-Managed",
+      "PROVIDER": "Cohere",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "aicore-cohere"
+      },
+      "CONTEXT_LENGTH": 4096,
+      "INPUT_TYPES": [
+        "text"
+      ],
+      "CAPABILITIES": [
+        "reranking"
+      ],
+      "STREAMING_SUPPORTED": false,
+      "VERSION": [
+        {
+          "KEY": "v3.5",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "2026-09-30",
+          "NAME": "v3.5",
+          "INPUT_TOKENS": 0,
+          "OUTPUT_TOKENS": 0,
+          "SEARCH_UNITS": 0.00114,
+          "READ_CACHED_INPUT_TOKENS": 0,
+          "WRITE_CACHED_INPUT_TOKENS": 0,
+          "RERANKER": true
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "nvidiallama3.2nvembedqa1b",
+      "NAME": "nvidia--llama-3.2-nv-embedqa-1b",
+      "CATEGORY": "NVIDIA",
+      "DISPLAY_NAME": "Llama 3.2 NV EmbedQA 1B",
+      "ACCESS_TYPE": "SAP-Managed",
+      "PROVIDER": "NVIDIA",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "aicore-nvidia",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": null,
+      "INPUT_TYPES": [
+        "text"
+      ],
+      "CAPABILITIES": [
+        "embedding"
+      ],
+      "STREAMING_SUPPORTED": false,
+      "VERSION": [
+        {
+          "KEY": "2",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "2026-10-30",
+          "NAME": "2",
+          "INPUT_TOKENS": 0.00007,
+          "OUTPUT_TOKENS": 0,
+          "READ_CACHED_INPUT_TOKENS": 0,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "both"
+    },
+    {
+      "KEY": "abapstarcoder27b",
+      "NAME": "abap-starcoder2-7b",
+      "CATEGORY": "SAP",
+      "DISPLAY_NAME": "ABAP StarCoder2 7B",
+      "ACCESS_TYPE": "SAP-Hosted",
+      "PROVIDER": "SAP",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "aicore-sap",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 16384,
+      "INPUT_TYPES": [
+        "text"
+      ],
+      "CAPABILITIES": [
+        "text-generation"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "v6",
+          "IS_LATEST": true,
+          "DEPRECATED": false,
+          "RETIREMENT_DATE": "2026-10-30",
+          "NAME": "v6",
+          "INPUT_TOKENS": 0.00041,
+          "OUTPUT_TOKENS": 0.00073,
+          "READ_CACHED_INPUT_TOKENS": 0,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "internal"
+    },
+    {
+      "KEY": "abapcodestral",
+      "NAME": "abap-codestral-7b",
+      "CATEGORY": "SAP",
+      "DISPLAY_NAME": "ABAP Codestral 7B",
+      "ACCESS_TYPE": "SAP-Hosted",
+      "PROVIDER": "SAP",
+      "ALLOWED_SCENARIOS": {
+        "foundation-models": "aicore-sap",
+        "orchestration": "orchestration"
+      },
+      "CONTEXT_LENGTH": 32768,
+      "INPUT_TYPES": [
+        "text"
+      ],
+      "CAPABILITIES": [
+        "text-generation"
+      ],
+      "STREAMING_SUPPORTED": true,
+      "VERSION": [
+        {
+          "KEY": "v1",
+          "IS_LATEST": true,
+          "DEPRECATED": true,
+          "RETIREMENT_DATE": "2026-08-30",
+          "NAME": "v1",
+          "INPUT_TOKENS": 0.00342,
+          "OUTPUT_TOKENS": 0.00789,
+          "READ_CACHED_INPUT_TOKENS": 0,
+          "WRITE_CACHED_INPUT_TOKENS": 0
+        }
+      ],
+      "availability": "internal"
+    }
+  ],
+  "instances": [
+    {
+      "id": 1,
+      "name": "m7i.xlarge",
+      "subtitle": "Light preprocessing, small batch scoring, simple pipeline steps",
+      "description": "CPU: min. 4 core, RAM: min. 16 GB",
+      "pricePerHour": {
+        "external": 0.44536,
+        "internal": 0.44536
+      },
+      "unitOfMeasure": "CU / Hour",
+      "cloud": "AWS"
+    },
+    {
+      "id": 2,
+      "name": "m7i.2xlarge",
+      "subtitle": "Standard data pipelines, moderate batch inference, small model serving",
+      "description": "CPU: min. 8 core, RAM: min. 32 GB",
+      "pricePerHour": {
+        "external": 0.81903,
+        "internal": 0.81903
+      },
+      "unitOfMeasure": "CU / Hour",
+      "cloud": "AWS"
+    },
+    {
+      "id": 3,
+      "name": "m7i.4xlarge",
+      "subtitle": "Larger dataset processing, parallel batch jobs, medium model serving",
+      "description": "CPU: min. 16 core, RAM: min. 64 GB",
+      "pricePerHour": {
+        "external": 1.56641,
+        "internal": 1.56641
+      },
+      "unitOfMeasure": "CU / Hour",
+      "cloud": "AWS"
+    },
+    {
+      "id": 4,
+      "name": "m7i.8xlarge",
+      "subtitle": "Heavy data preprocessing, large-scale batch inference, distributed training coordination",
+      "description": "CPU: min. 32 core, RAM: min. 128 GB",
+      "pricePerHour": {
+        "external": 3.02526,
+        "internal": 3.02526
+      },
+      "unitOfMeasure": "CU / Hour",
+      "cloud": "AWS"
+    },
+    {
+      "id": 5,
+      "name": "g4dn.xlarge",
+      "subtitle": "Entry-level GPU inference, small model fine-tuning (e.g. BERT, small transformers)",
+      "description": "CPU: min. 4 core, RAM: min. 16 GB, GPU: 1 T4",
+      "pricePerHour": {
+        "external": 0.98727,
+        "internal": 0.98727
+      },
+      "unitOfMeasure": "CU / Hour",
+      "cloud": "AWS"
+    },
+    {
+      "id": 6,
+      "name": "g4dn.2xlarge",
+      "subtitle": "Small-to-medium LLM inference, lightweight fine-tuning with moderate throughput",
+      "description": "CPU: min. 8 core, RAM: min. 32 GB, GPU: 1 T4",
+      "pricePerHour": {
+        "external": 1.49228,
+        "internal": 1.49228
+      },
+      "unitOfMeasure": "CU / Hour",
+      "cloud": "AWS"
+    },
+    {
+      "id": 7,
+      "name": "g4dn.4xlarge",
+      "subtitle": "Medium model inference and fine-tuning with higher CPU/memory headroom",
+      "description": "CPU: min. 16 core, RAM: min. 64 GB, GPU: 1 T4",
+      "pricePerHour": {
+        "external": 2.36363,
+        "internal": 2.36363
+      },
+      "unitOfMeasure": "CU / Hour",
+      "cloud": "AWS"
+    },
+    {
+      "id": 8,
+      "name": "g6.4xlarge",
+      "subtitle": "Mid-range single-GPU inference and fine-tuning for models up to ~7B parameters",
+      "description": "CPU: min. 16 core, RAM: min. 64 GB, GPU: 1 L4",
+      "pricePerHour": {
+        "external": 2.47566,
+        "internal": 2.47566
+      },
+      "unitOfMeasure": "CU / Hour",
+      "cloud": "AWS"
+    },
+    {
+      "id": 9,
+      "name": "g6.12xlarge",
+      "subtitle": "Multi-GPU training and inference for medium-to-large models, parallel workloads",
+      "description": "CPU: min. 96 core, RAM: min. 384 GB, GPU: 4 L4",
+      "pricePerHour": {
+        "external": 8.0709,
+        "internal": 8.0709
+      },
+      "unitOfMeasure": "CU / Hour",
+      "cloud": "AWS"
+    },
+    {
+      "id": 10,
+      "name": "g6e.4xlarge",
+      "subtitle": "High-performance single-GPU fine-tuning and inference for larger models (13B–30B range)",
+      "description": "CPU: min. 16 core, RAM: min. 128 GB, GPU: 1 L40S",
+      "pricePerHour": {
+        "external": 5.33927,
+        "internal": 5.33927
+      },
+      "unitOfMeasure": "CU / Hour",
+      "cloud": "AWS"
+    },
+    {
+      "id": 11,
+      "name": "p4d.24xlarge",
+      "subtitle": "Full-scale large model training across 8 A100s, distributed deep learning",
+      "description": "CPU: min. 96 core, RAM: min. 1152 GB, GPU: 8 A100",
+      "pricePerHour": {
+        "external": 37.97723,
+        "internal": 37.97723
+      },
+      "unitOfMeasure": "CU / Hour",
+      "cloud": "AWS"
+    },
+    {
+      "id": 12,
+      "name": "n4-standard-4",
+      "subtitle": "Light preprocessing, small batch scoring, simple pipeline steps",
+      "description": "CPU: min. 4 core, RAM: min. 16 GB",
+      "pricePerHour": {
+        "external": 0.3753,
+        "internal": 0.3753
+      },
+      "unitOfMeasure": "CU / Hour",
+      "cloud": "GCP"
+    },
+    {
+      "id": 13,
+      "name": "n4-standard-8",
+      "subtitle": "Standard data pipelines, moderate batch inference, small model serving",
+      "description": "CPU: min. 8 core, RAM: min. 32 GB",
+      "pricePerHour": {
+        "external": 0.78152,
+        "internal": 0.78152
+      },
+      "unitOfMeasure": "CU / Hour",
+      "cloud": "GCP"
+    },
+    {
+      "id": 14,
+      "name": "n4-standard-16",
+      "subtitle": "Larger dataset processing, parallel batch jobs, medium model serving",
+      "description": "CPU: min. 16 core, RAM: min. 64 GB",
+      "pricePerHour": {
+        "external": 1.50125,
+        "internal": 1.50125
+      },
+      "unitOfMeasure": "CU / Hour",
+      "cloud": "GCP"
+    },
+    {
+      "id": 15,
+      "name": "n4-standard-32",
+      "subtitle": "Heavy data preprocessing, large-scale batch inference, distributed training coordination",
+      "description": "CPU: min. 32 core, RAM: min. 128 GB",
+      "pricePerHour": {
+        "external": 2.90973,
+        "internal": 2.90973
+      },
+      "unitOfMeasure": "CU / Hour",
+      "cloud": "GCP"
+    },
+    {
+      "id": 16,
+      "name": "n1-standard-4",
+      "subtitle": "Entry-level GPU inference, small model fine-tuning (e.g. BERT, small transformers)",
+      "description": "CPU: min. 4 core, RAM: min. 15 GB, GPU: 1 T4",
+      "pricePerHour": {
+        "external": 0.36205,
+        "internal": 0.36205
+      },
+      "unitOfMeasure": "CU / Hour",
+      "cloud": "GCP"
+    },
+    {
+      "id": 17,
+      "name": "n1-standard-8",
+      "subtitle": "Small-to-medium LLM inference, lightweight fine-tuning with moderate throughput",
+      "description": "CPU: min. 8 core, RAM: min. 30 GB, GPU: 1 T4",
+      "pricePerHour": {
+        "external": 0.72411,
+        "internal": 0.72411
+      },
+      "unitOfMeasure": "CU / Hour",
+      "cloud": "GCP"
+    },
+    {
+      "id": 18,
+      "name": "n1-standard-16",
+      "subtitle": "Medium model inference and fine-tuning with higher CPU/memory headroom",
+      "description": "CPU: min. 16 core, RAM: min. 60 GB, GPU: 1 T4",
+      "pricePerHour": {
+        "external": 1.29359,
+        "internal": 1.29359
+      },
+      "unitOfMeasure": "CU / Hour",
+      "cloud": "GCP"
+    },
+    {
+      "id": 19,
+      "name": "g2-standard-16",
+      "subtitle": "Mid-range single-GPU inference and fine-tuning for models up to ~7B parameters",
+      "description": "CPU: min. 16 core, RAM: min. 64 GB, GPU: 1 L4",
+      "pricePerHour": {
+        "external": 2.13636,
+        "internal": 2.13636
+      },
+      "unitOfMeasure": "CU / Hour",
+      "cloud": "GCP"
+    },
+    {
+      "id": 20,
+      "name": "a2-ultragpu-1g",
+      "subtitle": "Large single-GPU model training and inference (e.g. 70B models, large embedding workloads)",
+      "description": "CPU: min. 12 core, RAM: min. 170 GB, GPU: 1 A100",
+      "pricePerHour": {
+        "external": 8.03933,
+        "internal": 8.03933
+      },
+      "unitOfMeasure": "CU / Hour",
+      "cloud": "GCP"
+    },
+    {
+      "id": 21,
+      "name": "a3-highgpu-1g",
+      "subtitle": "Frontier-scale training and inference across 8 H100s, largest available option",
+      "description": "CPU: min. 208 core, RAM: min. 1872 GB, GPU: 8 H100",
+      "pricePerHour": {
+        "external": 16.71826,
+        "internal": 16.71826
+      },
+      "unitOfMeasure": "CU / Hour",
+      "cloud": "GCP"
+    },
+    {
+      "id": 22,
+      "name": "Standard_D4ds_v6",
+      "subtitle": "Light preprocessing, small batch scoring, simple pipeline steps",
+      "description": "CPU: min. 4 core, RAM: min. 16 GB",
+      "pricePerHour": {
+        "external": 0.43947,
+        "internal": 0.43947
+      },
+      "unitOfMeasure": "CU / Hour",
+      "cloud": "AZURE"
+    },
+    {
+      "id": 23,
+      "name": "Standard_D8ds_v6",
+      "subtitle": "Standard data pipelines, moderate batch inference, small model serving",
+      "description": "CPU: min. 8 core, RAM: min. 32 GB",
+      "pricePerHour": {
+        "external": 0.89558,
+        "internal": 0.89558
+      },
+      "unitOfMeasure": "CU / Hour",
+      "cloud": "AZURE"
+    },
+    {
+      "id": 24,
+      "name": "Standard_D16ds_v6",
+      "subtitle": "Larger dataset processing, parallel batch jobs, medium model serving",
+      "description": "CPU: min. 16 core, RAM: min. 64 GB",
+      "pricePerHour": {
+        "external": 1.82258,
+        "internal": 1.82258
+      },
+      "unitOfMeasure": "CU / Hour",
+      "cloud": "AZURE"
+    },
+    {
+      "id": 25,
+      "name": "Standard_D32ds_v6",
+      "subtitle": "Heavy data preprocessing, large-scale batch inference, distributed training coordination",
+      "description": "CPU: min. 32 core, RAM: min. 128 GB",
+      "pricePerHour": {
+        "external": 3.47469,
+        "internal": 3.47469
+      },
+      "unitOfMeasure": "CU / Hour",
+      "cloud": "AZURE"
+    },
+    {
+      "id": 26,
+      "name": "Standard_NC4as_T4_v3",
+      "subtitle": "Entry-level GPU inference, small model fine-tuning (e.g. BERT, small transformers)",
+      "description": "CPU: min. 4 core, RAM: min. 28 GB, GPU: 1 T4",
+      "pricePerHour": {
+        "external": 0.95221,
+        "internal": 0.95221
+      },
+      "unitOfMeasure": "CU / Hour",
+      "cloud": "AZURE"
+    },
+    {
+      "id": 27,
+      "name": "Standard_NC8as_T4_v3",
+      "subtitle": "Small-to-medium LLM inference, lightweight fine-tuning with moderate throughput",
+      "description": "CPU: min. 8 core, RAM: min. 56 GB, GPU: 1 T4",
+      "pricePerHour": {
+        "external": 1.43049,
+        "internal": 1.43049
+      },
+      "unitOfMeasure": "CU / Hour",
+      "cloud": "AZURE"
+    },
+    {
+      "id": 28,
+      "name": "Standard_NC16as_T4_v3",
+      "subtitle": "Medium model inference and fine-tuning with higher CPU/memory headroom",
+      "description": "CPU: min. 16 core, RAM: min. 112 GB, GPU: 1 T4",
+      "pricePerHour": {
+        "external": 2.31391,
+        "internal": 2.31391
+      },
+      "unitOfMeasure": "CU / Hour",
+      "cloud": "AZURE"
+    },
+    {
+      "id": 29,
+      "name": "Standard_NC40ads_H100_v5",
+      "subtitle": "High-performance single H100 inference for large or quantized frontier models",
+      "description": "CPU: min. 40 core, RAM: min. 320 GB, GPU: 1 H100",
+      "pricePerHour": {
+        "external": 12.57589,
+        "internal": 12.57589
+      },
+      "unitOfMeasure": "CU / Hour",
+      "cloud": "AZURE"
+    },
+    {
+      "id": 30,
+      "name": "g_c4_m16",
+      "subtitle": "Light preprocessing, small batch scoring, simple pipeline steps",
+      "description": "CPU: min. 4 core, RAM: min. 16 GB",
+      "pricePerHour": {
+        "external": 0.23058,
+        "internal": 0.23058
+      },
+      "unitOfMeasure": "CU / Hour",
+      "cloud": "SAP"
+    },
+    {
+      "id": 31,
+      "name": "g_c8_m32",
+      "subtitle": "Standard data pipelines, moderate batch inference, small model serving",
+      "description": "CPU: min. 8 core, RAM: min. 32 GB",
+      "pricePerHour": {
+        "external": 0.46116,
+        "internal": 0.46116
+      },
+      "unitOfMeasure": "CU / Hour",
+      "cloud": "SAP"
+    },
+    {
+      "id": 32,
+      "name": "g_c32_m128",
+      "subtitle": "Heavy data preprocessing, large-scale batch inference, distributed training coordination",
+      "description": "CPU: min. 32 core, RAM: min. 128 GB",
+      "pricePerHour": {
+        "external": 1.84472,
+        "internal": 1.84472
+      },
+      "unitOfMeasure": "CU / Hour",
+      "cloud": "SAP"
+    },
+    {
+      "id": 33,
+      "name": "bg_s2_c96_m1536_v1",
+      "subtitle": "Frontier-scale multi-GPU training and inference, very large model workloads requiring high CPU and memory headroom",
+      "description": "CPU: min. 96 core, RAM: min. 1536 GB, GPU: 6 RTX6k",
+      "pricePerHour": {
+        "external": 47.63918,
+        "internal": 47.63918
+      },
+      "unitOfMeasure": "CU / Hour",
+      "cloud": "SAP",
+      "availability": "internal"
+    },
+    {
+      "id": 1,
+      "name": "Starter",
+      "subtitle": "Lightweight experiments, development testing, minimal workloads",
+      "description": "CPU: min. 1 core, RAM: min. 2.5 GB",
+      "pricePerHour": {
+        "external": 0.1952,
+        "internal": 0.1952
+      },
+      "unitOfMeasure": "CU / Hour",
+      "icon": "feeder-arrow",
+      "cloud": "SAP"
+    },
+    {
+      "id": 2,
+      "name": "Basic",
+      "subtitle": "Small training jobs, simple batch pipelines, low-resource serving",
+      "description": "CPU: min. 3 cores, RAM: min. 10 GB",
+      "pricePerHour": {
+        "external": 0.39,
+        "internal": 0.39
+      },
+      "unitOfMeasure": "CU / Hour",
+      "icon": "open-command-field",
+      "cloud": "SAP"
+    },
+    {
+      "id": 3,
+      "name": "Basic.8X",
+      "subtitle": "Large-scale CPU batch processing, distributed data preprocessing, heavy non-GPU training",
+      "description": "CPU: min. 31 cores, RAM: min. 115 GB",
+      "pricePerHour": {
+        "external": 3.0627,
+        "internal": 3.0627
+      },
+      "unitOfMeasure": "CU / Hour",
+      "icon": "process",
+      "cloud": "SAP"
+    },
+    {
+      "id": 4,
+      "name": "Infer-S",
+      "subtitle": "Small model inference endpoints, low-traffic production serving",
+      "description": "CPU: min. 3 cores, RAM: min. 10 GB, GPU: standard",
+      "pricePerHour": {
+        "external": 1.0268,
+        "internal": 1.0268
+      },
+      "unitOfMeasure": "CU / Hour",
+      "icon": "cancel-share",
+      "cloud": "SAP"
+    },
+    {
+      "id": 5,
+      "name": "Infer-M",
+      "subtitle": "Medium model inference, moderate throughput production deployments",
+      "description": "CPU: min. 7 cores, RAM: min. 25 GB, GPU: standard",
+      "pricePerHour": {
+        "external": 1.552,
+        "internal": 1.552
+      },
+      "unitOfMeasure": "CU / Hour",
+      "icon": "chart-axis",
+      "cloud": "SAP"
+    },
+    {
+      "id": 6,
+      "name": "Infer-L",
+      "subtitle": "Large model inference, high-throughput or resource-intensive serving workloads",
+      "description": "CPU: min. 15 cores, RAM: min. 55 GB, GPU: standard",
+      "pricePerHour": {
+        "external": 2.4582,
+        "internal": 2.4582
+      },
+      "unitOfMeasure": "CU / Hour",
+      "icon": "scatter-chart",
+      "cloud": "SAP"
+    },
+    {
+      "id": 7,
+      "name": "Train-L",
+      "subtitle": "GPU-accelerated model training (e.g. fine-tuning medium-sized models with a V100)",
+      "description": "CPU: min. 5 cores, RAM: min. 47 GB, GPU: advanced",
+      "pricePerHour": {
+        "external": 5.5508,
+        "internal": 5.5508
+      },
+      "unitOfMeasure": "CU / Hour",
+      "icon": "overview-chart",
+      "cloud": "SAP"
+    },
+    {
+      "id": 8,
+      "name": "Infer2-L",
+      "subtitle": "High-performance single A10G inference, serving larger models with improved throughput over Infer-L",
+      "description": "CPU: min. 15 cores, RAM: min. 57.9 GB, GPU: 1 a10g",
+      "pricePerHour": {
+        "external": 3.6917,
+        "internal": 3.6917
+      },
+      "unitOfMeasure": "CU / Hour",
+      "icon": "area-chart",
+      "availability": "internal",
+      "cloud": "SAP"
+    },
+    {
+      "id": 9,
+      "name": "Infer2-4XL",
+      "subtitle": "Multi-GPU inference for very large models, high-throughput serving workloads",
+      "description": "CPU: min. 47 cores, RAM: min. 182.7 GB, GPU: 4 a10g",
+      "pricePerHour": {
+        "external": 11.9707,
+        "internal": 11.9707
+      },
+      "unitOfMeasure": "CU / Hour",
+      "icon": "org-chart",
+      "availability": "internal",
+      "cloud": "SAP"
+    },
+    {
+      "id": 10,
+      "name": "Train2-8XL",
+      "subtitle": "Full-scale large model training across 8 A100s, distributed deep learning",
+      "description": "CPU: min. 95 cores, RAM: min. 1118.7 GB, GPU: 8 a100",
+      "pricePerHour": {
+        "external": 67.1944,
+        "internal": 67.1944
+      },
+      "unitOfMeasure": "CU / Hour",
+      "icon": "add-process",
+      "availability": "internal",
+      "cloud": "SAP"
+    },
+    {
+      "id": 11,
+      "name": "Train2-8XXL",
+      "subtitle": "Full-scale large model training across 8 A100s, extended memory configuration for the largest training workloads",
+      "description": "CPU: min. 95 cores, RAM: min. 1118.7 GB, GPU: 8 a100",
+      "pricePerHour": {
+        "external": 82.8221,
+        "internal": 82.8221
+      },
+      "unitOfMeasure": "CU / Hour",
+      "icon": "begin",
+      "availability": "internal",
+      "cloud": "SAP"
+    }
+  ]
+}

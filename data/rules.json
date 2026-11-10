@@ -1,0 +1,11 @@
+{
+  "calculatorVersion": "1.0.0",
+  "policyVersion": "sap-calculator-2026-11-10",
+  "batch": {"modelIds": ["gpt4.1nano", "gpt4.1mini", "gpt4.1"], "multiplier": "0.5"},
+  "orchestration": {"groundingBlocksPerQuery": "5"},
+  "promptOptimizationCUPerPrompt": "38.326",
+  "evaluationCUPerNodeHour": "0.546",
+  "computeBaselineHourCap": "730",
+  "internalCurrency": {"code": "EUR", "cuRate": "1.04", "generativeMultiplier": "0.54", "computeMultiplier": "0.45"},
+  "rounding": {"decimalPlaces": 10, "mode": "ROUND_HALF_UP"}
+}

@@ -1,0 +1,12 @@
+{
+  "foundationModels": [{
+    "modelId": "gpt4.1mini",
+    "version": "2025-04-14",
+    "pricingMode": "Standard",
+    "usage": {
+      "inputTokensPerRequest": 2000,
+      "outputTokensPerRequest": 500,
+      "requestsPerMonth": 10000
+    }
+  }]
+}
