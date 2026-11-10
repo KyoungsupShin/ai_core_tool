@@ -27,7 +27,7 @@ Python 노트북은 기존 Node.js Tool을 호출하므로 계산식과 가격�
 | --- | --- | --- |
 | 1 | 모델·단가 확인, Standard/Batch 비교 | 불필요 |
 | 2 | 사용량, 부가 서비스, Compute, 통화 환산 | 불필요 |
-| 3 | ReAct 그래프와 Reason/Act/Observe 추적 | 불필요 |
+| 3 | LangChain invoke와 ReAct 메시지 순환 | 불필요 |
 | 4 | 자연어 요청 → ReAct Agent → Tool → 답변 | 필요 |
 
 처음에는 **Run All**로 로컬 실습을 완료하고, 마지막 단계의 `USE_LIVE_LLM`을 켜서 실제 모델을 연결합니다.
@@ -62,6 +62,10 @@ from copy import deepcopy
 from decimal import Decimal
 from pathlib import Path
 from IPython.display import JSON, display
+from langchain_core.messages import AIMessage, HumanMessage, SystemMessage, ToolMessage
+from langchain_core.messages import convert_to_openai_messages
+from langchain_core.runnables import RunnableLambda
+from langchain_core.tools import StructuredTool
 
 ROOT = next((p for p in (Path.cwd(), *Path.cwd().parents)
              if (p / "src/cli.mjs").is_file() and (p / "data/catalog.json").is_file()), None)
@@ -72,8 +76,8 @@ if support_path not in sys.path:
     sys.path.insert(0, support_path)
 
 from lab_support import (
-    DEMO_REQUEST, NodeTools, ToolCallError, build_react_agent, chat_completion,
-    load_settings, make_demo_completion, run_react_agent,
+    DEMO_REQUEST, SYSTEM_PROMPT, NodeTools, ToolCallError,
+    load_settings, make_demo_completion,
 )
 
 tools = NodeTools(ROOT)
@@ -210,45 +214,175 @@ except ToolCallError as error:
 markdown("""
 ## 3. ReAct Agent: Reason → Act → Observe
 
-LangGraph의 `StateGraph`가 **Reason → Act → Observe → Reason** 순환을 제어하고,
-`ToolNode`가 실제 Tool을 실행합니다. 각 Reason 단계에서 모델은 이전 관찰을 보고 도구 호출, 최종 답변 또는 추가 질문을 선택합니다.
-조회·계산 도구의 실행 순서는 고정되어 있지 않습니다.
+이 실습은 `llm.invoke(messages)`와 `tool.invoke(tool_call)`을 셀에서 직접 호출합니다.
+`AIMessage.tool_calls`를 읽고, `ToolMessage`를 메시지 이력에 추가한 다음 모델을 다시 호출하는 코드가 ReAct 순환입니다.
+조회·계산 도구의 실행 순서는 매 턴 모델이 선택합니다.
 
 ```text
-사용자 요청 → Reason (LLM) → Act (ToolNode) → Observe (Tool 결과)
+사용자 요청 → Reason (llm.invoke) → Act (tool.invoke) → Observe (ToolMessage)
                  ↑                                  |
                  +----------------------------------+
                  |
                  +→ 최종 답변 / 추가 질문
 ```
 
-**이 단계의 모델 응답은 스크립트 기반 시뮬레이션입니다.** 그래프와 Tool 실행은 실제이며, 마지막 단계에서 같은 그래프에 Gen AI Hub LLM을 연결합니다.
+**이 단계의 모델 응답은 스크립트 기반 시뮬레이션입니다.** Tool은 실제 계산 엔진을 사용합니다. 마지막 단계에서는 같은 invoke 루프에 Gen AI Hub의 ChatOpenAI를 연결합니다.
 Trace에는 선택한 행동과 관찰된 결과를 기록합니다. 모델의 비공개 추론 과정은 수집하거나 표시하지 않습니다.
 """)
 code("""
-react_graph = build_react_agent(completion=make_demo_completion(), node_tools=tools)
-print(react_graph.get_graph().draw_mermaid())
+def make_langchain_tool(definition):
+    function = definition["function"]
+
+    def execute(**arguments):
+        result = tools.call(function["name"], arguments)
+        return json.dumps(result, ensure_ascii=False)
+
+    return StructuredTool.from_function(
+        func=execute,
+        name=function["name"],
+        description=function["description"],
+        args_schema=function["parameters"],
+    )
+
+langchain_tools = [make_langchain_tool(definition) for definition in tools.definitions]
+tool_map = {tool.name: tool for tool in langchain_tools}
+display(list(tool_map))
+""")
+markdown("""
+### Reason: invoke 응답에서 Tool 선택 읽기
+
+로컬 데모용 Runnable은 준비된 모델 메시지를 `AIMessage`로 변환합니다. 실제 모델도 같은 메시지 타입을 반환합니다.
+""")
+code("""
+def make_demo_llm():
+    scripted_completion = make_demo_completion()
+
+    def invoke_demo(messages):
+        response = scripted_completion(
+            messages=convert_to_openai_messages(messages),
+            tools=tools.definitions,
+            tool_choice="auto",
+        )
+        message = response["choices"][0]["message"]
+        return AIMessage(
+            content=message.get("content") or "",
+            tool_calls=[{
+                "name": call["function"]["name"],
+                "args": json.loads(call["function"]["arguments"]),
+                "id": call["id"],
+                "type": "tool_call",
+            } for call in message.get("tool_calls", [])],
+        )
+
+    return RunnableLambda(invoke_demo)
+
+demo_llm = make_demo_llm()
+messages = [SystemMessage(content=SYSTEM_PROMPT), HumanMessage(content=DEMO_REQUEST)]
+ai_message = demo_llm.invoke(messages)
+display(ai_message.tool_calls)
+""")
+markdown("""
+### Act / Observe: 선택한 Tool 실행 후 이력에 추가
+
+`tool.invoke()`에 전체 tool_call을 넘기면 같은 ID를 가진 `ToolMessage`가 반환됩니다.
+assistant 메시지와 Tool 결과를 모두 이력에 추가해야 다음 모델 호출이 결과를 관찰할 수 있습니다.
+""")
+code("""
+tool_call = ai_message.tool_calls[0]
+selected_tool = tool_map[tool_call["name"]]
+tool_message = selected_tool.invoke(tool_call)
+assert isinstance(tool_message, ToolMessage)
+assert tool_message.tool_call_id == tool_call["id"]
+display(JSON(json.loads(tool_message.content)))
+
+messages.append(ai_message)
+messages.append(tool_message)
+next_ai_message = demo_llm.invoke(messages)
+display(next_ai_message.tool_calls)
+""")
+markdown("""
+### ReAct 순환 코드
+
+아래 함수는 노트북 안에 정의되어 있습니다. 모델 호출, Tool 선택, 실행, 관찰, 종료 조건을 직접 바꾸어 실습하세요.
+잘못된 입력이나 없는 Tool은 오류 관찰값으로 전달하고, 모델이 수정 또는 추가 질문을 선택하게 합니다.
+""")
+code("""
+def react_invoke(llm_with_tools, user_prompt, max_rounds=8, max_tool_calls=20):
+    if not user_prompt.strip() or not 1 <= max_rounds <= 20 or not 1 <= max_tool_calls <= 100:
+        raise ValueError("요청과 호출 횟수 제한을 확인하세요.")
+    messages = [SystemMessage(content=SYSTEM_PROMPT), HumanMessage(content=user_prompt)]
+    events, observations = [], []
+    call_count = 0
+
+    for turn in range(1, max_rounds + 1):
+        # Reason: ask the model which action to take using prior observations.
+        try:
+            ai_message = llm_with_tools.invoke(messages)
+        except Exception as error:
+            raise RuntimeError(f"LLM invoke 실패 ({type(error).__name__}). 모델과 연결 설정을 확인하세요.") from None
+        if not isinstance(ai_message, AIMessage):
+            raise TypeError("모델 응답은 AIMessage여야 합니다.")
+        calls = ai_message.tool_calls + ai_message.invalid_tool_calls
+        events.append({"event": "reason", "round": turn, "selected_tools": [c["name"] for c in calls]})
+        if not calls:
+            if not ai_message.content:
+                raise RuntimeError("답변과 Tool 호출이 모두 비어 있습니다.")
+            messages.append(ai_message)
+            return {"status": "completed", "answer": ai_message.content,
+                    "events": events, "observations": observations, "messages": messages}
+        if call_count + len(calls) > max_tool_calls:
+            break
+        call_ids = [call.get("id") for call in calls]
+        if any(not call_id for call_id in call_ids) or len(set(call_ids)) != len(call_ids):
+            raise RuntimeError("Tool 호출 ID가 없거나 중복되었습니다.")
+        messages.append(ai_message)
+
+        for call in calls:
+            call_count += 1
+            events.append({"event": "act", "round": turn, "name": call["name"], "arguments": call["args"]})
+            # Act: invoke the selected LangChain tool; the Node engine validates its inputs.
+            try:
+                if call.get("type") == "invalid_tool_call":
+                    raise ToolCallError({"code": "INVALID_ARGUMENT", "message": "유효한 JSON 객체로 다시 호출하세요."})
+                if call["name"] not in tool_map:
+                    raise ToolCallError({"code": "UNKNOWN_TOOL", "message": "등록된 Tool을 선택하세요."})
+                tool_message = tool_map[call["name"]].invoke(call)
+            except ToolCallError as error:
+                tool_message = ToolMessage(content=json.dumps({"error": error.error}, ensure_ascii=False), tool_call_id=call["id"], name=call["name"], status="error")
+            except (ValueError, TypeError):
+                tool_message = ToolMessage(content=json.dumps({"error": {"code": "INVALID_ARGUMENT", "message": "Tool 입력 형식을 확인하세요."}}), tool_call_id=call["id"], name=call["name"], status="error")
+
+            # Observe: attach the matching ToolMessage before invoking the model again.
+            messages.append(tool_message)
+            result = json.loads(tool_message.content)
+            observations.append({"name": call["name"], "arguments": call["args"], "result": result})
+            summary = result.get("monthlyCUExact", result.get("error", "조회 결과 수신"))
+            events.append({"event": "observe", "round": turn, "name": call["name"], "summary": summary})
+
+    return {"status": "limit_reached", "answer": "호출 제한에 도달했습니다. 관찰값을 확인하세요.",
+            "events": events, "observations": observations, "messages": messages}
 """)
 code("""
 print(DEMO_REQUEST)
-demo = run_react_agent(DEMO_REQUEST, completion=make_demo_completion(), node_tools=tools)
+demo = react_invoke(make_demo_llm(), DEMO_REQUEST)
 assert demo["status"] == "completed"
-assert demo["architecture"] == "langgraph-react"
+demo_quotes = [o["result"] for o in demo["observations"] if o["name"] == "estimate_ai_core_cost"]
+assert {quote["lineItems"][0]["pricingMode"] for quote in demo_quotes} == {"Standard", "Batch"}
 display(demo["events"])
 print(demo["answer"])
 """)
 code("""
 display([
-    {"role": message["role"], "tool_call_id": message.get("tool_call_id"),
-     "declared_tool_call_ids": [call["id"] for call in message.get("tool_calls", [])]}
+    {"role": message.type, "tool_call_id": getattr(message, "tool_call_id", None),
+     "declared_tool_call_ids": [call["id"] for call in getattr(message, "tool_calls", [])]}
     for message in demo["messages"]
 ])
 """)
 markdown("""
 ## 4. ReAct Agent에 실제 SAP Gen AI Hub 연결
 
-[devday2026의 agent_client.py](https://github.com/KyoungsupShin/devday2026/blob/feature/ks_shin/4_agent_patterns/src/agent_to_agent_advanced/agent_client.py)와 동일하게
-`gen_ai_hub.proxy.native.openai.chat.completions.create(model_name=..., tools=...)`를 사용합니다.
+[devday2026](https://github.com/KyoungsupShin/devday2026)의 SAP AI SDK 및 환경변수 설정을 사용합니다.
+이 실습에서는 SDK의 LangChain 어댑터인 `gen_ai_hub.proxy.langchain.openai.ChatOpenAI`를 직접 생성하고 `bind_tools()`로 Tool을 연결합니다.
 
 저장소 루트의 `.env`에 본인의 설정을 넣으세요. 참고 저장소의 `.env`와 동일한 변수명을 사용합니다.
 
@@ -286,13 +420,23 @@ live = None
 if USE_LIVE_LLM:
     settings = load_settings(ROOT / ".env")
     settings.require_ai_core()
-    live = run_react_agent(
-        LIVE_REQUEST,
-        completion=lambda **kwargs: chat_completion(settings, **kwargs),
-        node_tools=tools,
-        max_rounds=8,
-        max_tool_calls=20,
-    )
+    from gen_ai_hub.proxy.langchain.openai import ChatOpenAI
+
+    model_options = {
+        "proxy_model_name": settings.llm_model,
+        "seed": settings.llm_seed,
+        "timeout": 90,
+        "max_retries": 0,
+    }
+    if settings.deployment_id:
+        model_options["deployment_id"] = settings.deployment_id
+    try:
+        llm = ChatOpenAI(**model_options)
+        llm_with_tools = llm.bind_tools(langchain_tools)
+    except Exception as error:
+        raise RuntimeError(f"모델 초기화 실패 ({type(error).__name__}). .env와 모델 배포를 확인하세요.") from None
+
+    live = react_invoke(llm_with_tools, LIVE_REQUEST, max_rounds=8, max_tool_calls=20)
     print(live["status"])
     print(live["answer"])
 else:
