@@ -1,0 +1,51 @@
+name: Refresh SAP AI Core pricing
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 0 * * *' # 09:17 Asia/Seoul
+
+concurrency:
+  group: pricing-refresh
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm run test:pricing
+      - name: Download, extract and validate candidate
+        id: refresh
+        run: npm run pricing:refresh -- --output work/pricing-refresh/latest
+      - name: Prepare candidate on the update branch
+        if: steps.refresh.outputs.changed == 'true'
+        env:
+          EXPECTED_SHA: ${{ steps.refresh.outputs.sha }}
+        run: npm run pricing:activate -- --run work/pricing-refresh/latest --expected-sha "$EXPECTED_SHA"
+      - name: Open or update draft pricing PR
+        if: steps.refresh.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: automation/pricing-refresh
+          title: 'Review SAP AI Core pricing update'
+          commit-message: 'Update SAP AI Core pricing snapshot for review'
+          body-path: work/pricing-refresh/latest/report.md
+          draft: true
+          add-paths: data/catalog.json
+      - name: Retain source and validation evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pricing-refresh-${{ github.run_id }}
+          path: work/pricing-refresh/latest
+          retention-days: 30
