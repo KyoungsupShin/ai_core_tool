@@ -18,11 +18,11 @@ python -m venv .venv
 
 Windows PowerShell에서는 `.venv/bin/python` 대신 `.\.venv\Scripts\python.exe`를 사용합니다. Jupyter에서 **AI Core Tool Lab** 커널을 선택합니다.
 
-기본 Run All은 실제 LLM을 호출하지 않습니다. 스크립트 기반 모델 메시지를 실제 LangGraph ReAct 그래프와 로컬 Tool에 연결해 전체 흐름을 확인합니다. 실제 자연어 LLM 실습은 루트 `.env`를 직접 준비한 뒤 노트북의 `USE_LIVE_LLM=True`로 켭니다. `.env.example`에는 비어 있는 설정 항목만 있으며 `.env`는 Git에서 제외합니다.
+기본 Run All은 실제 LLM을 호출하지 않습니다. 스크립트 기반 모델 응답과 실제 로컬 Tool로 전체 흐름을 확인합니다. 실제 자연어 LLM 실습은 루트 `.env`를 직접 준비한 뒤 노트북의 `USE_LIVE_LLM=True`로 켭니다. `.env.example`에는 비어 있는 설정 항목만 있으며 `.env`는 Git에서 제외합니다.
 
-ReAct 구조는 `Reason (LLM) → Act (LangGraph ToolNode) → Observe (도구 결과) → Reason`입니다. 모델이 도구 종류와 순서를 선택하고, 관찰값이나 오류를 근거로 다음 행동을 다시 선택합니다. 최대 모델 턴·Tool 호출 수를 넘으면 그래프가 중단됩니다. Trace에는 공개된 행동과 관찰값을 기록하며 비공개 추론은 수집하지 않습니다. 구현은 `notebooks/lab_support.py`의 `build_react_agent`와 `run_react_agent`입니다. 기존 `run_agent` 이름은 호환 별칭으로 유지합니다.
+노트북에는 `ChatOpenAI.bind_tools()`, `llm.invoke(messages)`, `AIMessage.tool_calls`, `tool.invoke(tool_call)`, `ToolMessage` 피드백 코드를 직접 펼쳐 두었습니다. ReAct 순환을 제어하는 `react_invoke` 함수도 셀 안에 있어 수정하며 실습할 수 있습니다. 모델이 도구와 순서를 선택하고 관찰값이나 오류를 근거로 다시 판단합니다. 최대 모델 턴·Tool 호출 수를 넘으면 중단합니다. 별도의 LangGraph 구현은 `notebooks/lab_support.py`에 참고용으로 유지합니다.
 
-LLM 연결은 [devday2026의 native Tool Calling](https://github.com/KyoungsupShin/devday2026/blob/feature/ks_shin/4_agent_patterns/src/agent_to_agent_advanced/agent_client.py)을 참고했습니다. 같은 `AICORE_*`, `LLM_MODEL`, `LLM_SEED`, 선택적 `AICORE_LLM_DEPLOYMENT_ID`를 사용하며 `sap-ai-sdk-gen`으로 연결합니다. `LLM_MODEL`은 요청을 해석할 모델이며 견적 대상의 `modelId`와는 별개입니다.
+LLM 연결은 [devday2026](https://github.com/KyoungsupShin/devday2026)의 SAP AI SDK 설정을 참고했습니다. 같은 `AICORE_*`, `LLM_MODEL`, `LLM_SEED`, 선택적 `AICORE_LLM_DEPLOYMENT_ID`를 사용하며 `gen_ai_hub.proxy.langchain.openai.ChatOpenAI`로 연결합니다. `LLM_MODEL`은 요청을 해석할 모델이며 견적 대상의 `modelId`와는 별개입니다.
 
 노트북·Python 연결 검증:
 
@@ -142,7 +142,25 @@ Translation, dataMasking, inferenceObservability도 `{enabled, requestsPerMonth}
 
 ## 가격표 갱신
 
-사이트 HTML에서 최신 module script URL을 확인한 뒤 해당 번들을 내려받습니다. 원격 JavaScript를 실행하지 않고 Acorn AST에서 데이터 리터럴만 읽습니다.
+사이트 HTML에서 최신 module script URL을 자동으로 찾아 다운로드하고, 원격 JavaScript를 실행하지 않고 Acorn AST로 데이터 리터럴만 추출합니다.
+
+```bash
+npm run pricing:refresh
+```
+
+실행 결과의 `run` 폴더에 원본 HTML/JS, `candidate.json`, 변경 전·후 값을 담은 `report.json`, 검토용 `report.md`가 생성됩니다. 가격·버전·모델·가용성·Compute·저장소·CU 계수를 비교하며 현재 활성 데이터는 그대로 둡니다.
+
+검토한 후보의 소스 SHA를 지정해 활성화합니다.
+
+```bash
+npm run pricing:activate -- --run work/pricing-refresh/run-XXXXXX --expected-sha REVIEWED_SHA256
+```
+
+후보 변조, 규칙 변경, 기존 가격표의 동시 변경을 검사하고 이전 데이터를 백업한 뒤 파일을 교체합니다. 계산 규칙과 기존 회귀 결과는 원본과 대조해 검토해야 합니다. 고정된 과거 가격을 검증하는 테스트가 새 가격에서 실패하면 기대값을 무조건 덮어쓰지 말고 원본 계산과 비교하여 fixture를 갱신합니다.
+
+GitHub Actions는 매일 **한국 시간 09:17** 또는 수동 실행으로 최신 데이터를 확인합니다. 변경이 있으면 **draft PR**을 생성·갱신하며 자동 병합하지 않습니다. 다운로드·추출·검증 실패 시 활성 가격표를 교체하지 않습니다. 실행 자료는 Actions artifact로 30일 보관합니다. [파이프라인 상세](docs/pricing-pipeline.md)를 참고하세요.
+
+이미 받은 번들에서 후보를 추출하는 기존 명령도 유지합니다.
 
 ```bash
 SOURCE_BUNDLE_URL='https://example.com/observed-bundle.js' \
@@ -152,7 +170,7 @@ npm run snapshot:diff -- data/catalog.json candidate.json
 
 후보 파일은 새 경로에만 생성되며 기존 파일을 덮어쓰지 않습니다. 추출 구조가 바뀌면 실패하도록 구성했습니다. 번들 변경은 UI 변경일 수도 계산 규칙 변경일 수도 있으므로 diff만으로 규칙 불변을 가정하지 않습니다.
 
-가격 차이와 원본 계산 함수 변경을 검토하고 필요하면 rules.json과 calculatorVersion을 갱신합니다. 새 카탈로그와 원본 계산을 대조한 후 회귀 테스트를 갱신하고 통과한 후보를 catalog.json으로 승격합니다. 자동 온라인 갱신이나 무검증 활성화는 포함하지 않았습니다.
+가격 차이와 원본 계산 함수 변경을 검토하고 필요하면 rules.json과 calculatorVersion을 갱신합니다. 새 카탈로그와 원본 계산을 대조한 후 회귀 테스트를 갱신합니다. 다운로드와 변경 탐지는 자동화되어 있으며, 본 서비스에 반영하는 경계는 검토 후 PR 병합 또는 명시적인 로컬 활성화입니다.
 
 ## 검증 범위
 

@@ -9,3 +9,7 @@ __pycache__/
 *.py[cod]
 .ipynb_checkpoints/
 notebooks/*-executed.ipynb
+work/
+data/.pricing-update.lock
+data/.catalog-update.tmp
+data/.catalog-*.tmp
