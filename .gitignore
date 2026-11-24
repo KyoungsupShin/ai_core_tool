@@ -7,9 +7,6 @@ coverage/
 .venv*/
 __pycache__/
 *.py[cod]
-.ipynb_checkpoints/
-notebooks/*-executed.ipynb
-work/
-data/.pricing-update.lock
-data/.catalog-update.tmp
-data/.catalog-*.tmp
+backend/db.sqlite3
+frontend/node_modules/
+frontend/dist/

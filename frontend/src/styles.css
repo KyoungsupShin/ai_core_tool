@@ -1,0 +1,8 @@
+:root { font-family: Inter, system-ui, sans-serif; color: #17212b; background: #f4f7fa; }
+* { box-sizing: border-box; } body { margin: 0; } main { max-width: 960px; margin: auto; padding: 3rem 1.25rem; }
+header { margin-bottom: 2rem; } header p { color: #1677ff; font-weight: 700; margin: 0; } h1 { margin: .3rem 0; } header span, small, section p { color: #657482; }
+section { background: white; border-radius: 12px; padding: 1.5rem; margin: 1rem 0; box-shadow: 0 2px 12px #17212b12; } h2 { margin-top: 0; }
+.row { display: flex; gap: .5rem; } input, textarea { width: 100%; border: 1px solid #c9d3dd; border-radius: 7px; padding: .7rem; font: inherit; } textarea { min-height: 300px; font: 13px ui-monospace, monospace; margin: .5rem 0 1rem; }
+button { border: 0; border-radius: 7px; padding: .7rem 1rem; background: #1677ff; color: white; font: inherit; cursor: pointer; } button:disabled { opacity: .6; }
+ul { padding: 0; list-style: none; } li { border-top: 1px solid #e7edf2; padding: .7rem 0; } li small { display: block; margin-top: .2rem; } code { margin-left: .5rem; }
+.error { background: #fff0f0; color: #b42318; border-radius: 8px; padding: 1rem; } .result { margin-top: 1rem; background: #eff8ff; padding: 1rem; border-radius: 8px; } pre { overflow: auto; }

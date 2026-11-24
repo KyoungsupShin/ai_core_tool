@@ -1,5 +1,5 @@
 {
-  "name": "sap-ai-core-estimate-tool",
+  "name": "joule4sales",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -9,20 +9,12 @@
   "exports": "./src/tools.mjs",
   "scripts": {
     "test": "node --test",
-    "tools": "node src/cli.mjs",
-    "snapshot": "node scripts/import-snapshot.mjs",
-    "snapshot:diff": "node scripts/diff-snapshot.mjs",
-    "pricing:refresh": "node scripts/refresh-pricing.mjs refresh",
-    "pricing:activate": "node scripts/refresh-pricing.mjs activate",
-    "test:pricing": "node --test test/pricing-pipeline.test.mjs"
+    "test:backend": ".venv/bin/python backend/manage.py test api",
+    "tools": "node src/cli.mjs"
   },
   "dependencies": {
     "ajv": "8.17.1",
     "decimal.js": "10.6.0"
   },
-  "devDependencies": {
-    "acorn": "8.15.0",
-    "parse5": "7.3.0",
-    "undici": "6.29.1"
-  }
+  "devDependencies": {}
 }

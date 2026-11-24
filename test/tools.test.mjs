@@ -4,13 +4,15 @@ import {readFileSync} from 'node:fs';
 import {execFileSync, spawnSync} from 'node:child_process';
 import {createTools} from '../src/tools.mjs';
 import {modelType} from '../src/engine.mjs';
-import {extractSnapshot} from '../scripts/import-snapshot.mjs';
 
 const catalog = JSON.parse(readFileSync(new URL('../data/catalog.json', import.meta.url)));
 const rules = JSON.parse(readFileSync(new URL('../data/rules.json', import.meta.url)));
 const tools = createTools({now: () => new Date('2026-11-10T00:00:00Z')});
 const call = (name, args) => tools.callTool(name, args);
-const base = () => JSON.parse(readFileSync(new URL('../examples/estimate.json', import.meta.url)));
+const base = () => ({foundationModels: [{
+  modelId: 'gpt4.1mini', version: '2025-04-14', pricingMode: 'Standard',
+  usage: {inputTokensPerRequest: 2000, outputTokensPerRequest: 500, requestsPerMonth: 10000}
+}]});
 const estimate = args => call('estimate_ai_core_cost', args);
 const throwsCode = (fn, code) => assert.throws(fn, e => e.code === code);
 
@@ -140,24 +142,15 @@ test('policy changes alter results without editing engine; caller mutations are 
   assert.ok(estimate(base()).source.site.startsWith('https://'));
   assert.notEqual(custom.callTool('estimate_ai_core_cost',a).policyHash,estimate(a).policyHash);
 });
-test('CLI accepts file and function-call envelope; errors use nonzero exit status', () => {
+test('CLI function-call envelope and errors use nonzero exit status', () => {
   const cwd=new URL('..',import.meta.url);
-  const result=JSON.parse(execFileSync(process.execPath,['src/cli.mjs','estimate_ai_core_cost','@examples/estimate.json'],{cwd,encoding:'utf8'}));
-  assert.equal(result.monthlyCUExact,'19.3240775');
   const wrapped=JSON.parse(execFileSync(process.execPath,['src/cli.mjs','--call'],{cwd,input:JSON.stringify({name:'estimate_ai_core_cost',arguments:base()}),encoding:'utf8'}));
-  assert.equal(wrapped.monthlyCUExact,result.monthlyCUExact);
+  assert.equal(wrapped.monthlyCUExact,'19.3240775');
   const invalid=spawnSync(process.execPath,['src/cli.mjs','estimate_ai_core_cost','{"bad":1}'],{cwd,encoding:'utf8'});
   assert.equal(invalid.status,1);
   assert.equal(JSON.parse(invalid.stderr).error.code,'INVALID_ARGUMENT');
   const all=JSON.parse(execFileSync(process.execPath,['src/cli.mjs','list_models'],{cwd,input:'',encoding:'utf8'}));
   assert.ok(all.models.length>0);
-});
-test('snapshot parser fails closed without executing remote expressions', () => {
-  let executed=false;
-  globalThis.__snapshotBad=()=>{executed=true;};
-  assert.throws(()=>extractSnapshot('var a = { x: globalThis.__snapshotBad() };','test'));
-  assert.equal(executed,false);
-  delete globalThis.__snapshotBad;
 });
 test('148 golden cases from original browser calculation functions', () => {
   const golden=JSON.parse(readFileSync(new URL('./fixtures/browser-parity.json',import.meta.url)));
